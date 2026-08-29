@@ -136,14 +136,6 @@ body {
     font-weight: bold;
 }
 
-.selo{
-   padding: 4px 12px;
-   border-radius: 20px;
-   font-size: 12px;
-   font-weight: bold;
-   color: var(--branco);
-}
-
 .selo-disponivel{
     background-color: var(--status-disponivel);
     color: var(--branco);
