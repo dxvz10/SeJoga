@@ -1,0 +1,17 @@
+/* ============================================
+   BORA CURTIR — Estilos globais
+   Paleta oficial do projeto. Toda página importa este arquivo.
+   ============================================ */
+
+   /* RESET — zera as opiniões padrão do navegador */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      /* PALETA — todas as cores do site moram aqui.
+   :root significa "o topo do documento", então estas
+   variáveis ficam disponíveis em qualquer regra do arquivo. */
+   :root {
+        /* Identidade — roxo e rosa */
