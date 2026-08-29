@@ -7,6 +7,74 @@
     <title>Bora Curtir</title>
 </head>
 <body>
+  <!-- CABEÇALHO — vai se repetir em todas as páginas do site -->
+   <header class="cabecalho">
 
+        <a href="index.html" class="logo">Bora Curtir!</a>
+
+        <!-- O menu é uma LISTA de links. Parece estranho no começo,
+             mas é o padrão: um menu é literalmente uma lista de opções,
+             e leitores de tela anunciam "lista com 3 itens" pro usuário. -->
+
+        <nav class="menu">
+            <ul class="menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="calendario.html">Calendário</a></li>
+                <li><a href="cadastro-evento.html">Cadastrar Evento</a></li>
+            </ul>
+        </nav>
+
+        <a href="login.html" class="botao-entrar">Entrar</a>
+    </header>
+<main>
+    <section class="secao-eventos">
+
+        <h1>Eventos em destaque</h1>
+        <p class="subtitulo">Festas, jogos e encontros perto de você</p>
+
+        <div class="grade-eventos">
+             <!-- Cada evento é um <article>: um conteúdo que faz sentido
+                     sozinho, fora do contexto da página. -->
+                <article class="card-evento">
+                    <span class="categoria">Futebol</span>
+                    <h2 class="titulo">Vasco  x Vitoria</h2>
+                    <p class="local">Maracanã</p>
+                    <p class="data">10/09/2026</p>
+                    <p class="descricao">Venha assistir Vasco x Vitoria pela Copa Betano do Brasil!</p>
+
+                    <div class="rodape-card">
+                        <span class="preco">R$ 50,00</span>
+                        <span class="selo-esgotado">Esgotado</span>
+                    </div>
+                </article>
+                
+                <article class="card-evento">
+                    <span class="categoria">Jogos</span>
+                    <h2 class="titulo">Loud x NRG</h2>
+                    <p class="local">Los Angeles Arena</p>
+                    <p class="data">20/10/2026</p>
+                    <p class="descricao">Venha assistir Loud x NRG pelo VCT Americas Stage 2!</p>
+
+                    <div class="rodape-card">
+                        <span class="preco">R$ 100,00</span>
+                        <span class="selo-realizado">Realizado</span>
+                    </div>
+                </article>
+
+                <article class="card-evento">
+                    <span class="categoria">Rolê</span>
+                    <h2 class="titulo">Resenha do Arrocha</h2>
+                    <p class="local">Rio de Janeiro - Lapa</p>
+                    <p class="data">21/08/2026</p>
+                    <p class="descricao">Venha aproveitar bons drinks, comidas, e muita música boa!</p>
+
+                    <div class="rodape-card">
+                        <span class="preco">R$ 100,00</span>
+                        <span class="selo-disponivel">Disponível</span>
+                    </div>
+                </article>
+        </div>
+    </section>
+</main>  
 </body>
 </html>
