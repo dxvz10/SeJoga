@@ -3,15 +3,40 @@
    Paleta oficial do projeto. Toda página importa este arquivo.
    ============================================ */
 
-   /* RESET — zera as opiniões padrão do navegador */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-      }
-      /* PALETA — todas as cores do site moram aqui.
+/* RESET — zera as opiniões padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* PALETA — todas as cores do site moram aqui.
    :root significa "o topo do documento", então estas
    variáveis ficam disponíveis em qualquer regra do arquivo. */
-   :root {
-        /* Identidade — roxo e rosa */
+:root {
+    /* Identidade — roxo e rosa */
+    --roxo-escuro:  #3D0A4E;   /* textos e títulos */
+    --roxo:         #6A1B7A;   /* cor de marca: menu, cabeçalhos */
+    --roxo-claro:   #F5EAF8;   /* fundos suaves */
+    --rosa:         #C2185B;   /* ação principal: botões */
+    --rosa-escuro:  #8E1147;   /* o mesmo rosa no hover */
+    --rosa-claro:   #F8BBD0;   /* destaques leves */
+
+    /* Neutros */
+    --branco:       #FFFFFF;
+    --cinza-claro:  #F4F2F5;
+    --cinza-borda:  #D6D0DA;
+    --cinza-texto:  #5C5560;
+
+    /* Sinalização de evento — as 4 cores de status */
+    --status-disponivel: #2E7D32;   /* verde  */
+    --status-perto:      #B26A00;   /* âmbar  */
+    --status-esgotado:   #B3261E;   /* vermelho */
+    --status-realizado:  #6E6E6E;   /* cinza  */
+}
+
+body {
+    background-color: var(--cinza-claro);
+    color: var(--roxo-escuro);
+}
