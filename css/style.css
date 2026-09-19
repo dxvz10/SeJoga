@@ -109,9 +109,15 @@ body {
 }
 
 /* ===== SOBRE NÓS ===== */
+.secao-sobre {
+    background-color: var(--roxo-claro);
+    padding: 40px 24px;
+    text-align: left;
+}
+
 .secao-sobre h2 {
     color: var(--roxo);
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 16px;
 }
 
@@ -119,6 +125,8 @@ body {
     color: var(--roxo-escuro);
     margin-bottom: 16px;
     line-height: 1.6;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .secao-sobre ul {
@@ -126,6 +134,8 @@ body {
     margin: 24px 0;
     display: grid;
     gap: 16px;
+    padding-left: 60px;
+    margin: 24px 0;
 }
 
 .secao-sobre li {
@@ -138,6 +148,11 @@ body {
 }
 
 /* ===== CONTATO ===== */
+
+.secao-contato {
+   background-color: var(--roxo-claro);
+   padding: 40px 24px;
+}
 
 .secao-contato h2 {
     color: var(--roxo);
@@ -159,6 +174,9 @@ body {
     background-color: var(--branco);
     padding: 24px;
     border-radius: 10px;
+    margin: 0 auto;
+    padding: 24px;
+
 }
 
 .secao-contato label {
@@ -201,6 +219,7 @@ body {
 
 .subtitulo {
     color: var(--cinza-texto);
+    font-size: 18px;
     margin-bottom: 32px;
 }
 
@@ -231,6 +250,14 @@ body {
 .trilho-eventos .card-evento {
     flex: 0 0 70%;
     scroll-snap-align: center;
+    transform: scale(0.9);
+    opacity: 0.95;
+    transition: transform 0.35s, opacity 0.35s;    
+}
+
+.trilho-eventos .card-evento.ativo {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .trilho-eventos .card-evento:first-child{
@@ -267,12 +294,6 @@ body {
 
 .seta-direita {
     right: -12px;
-}
-
-.secao-sobre {
-    background-color: var(--roxo-claro);
-    padding: 40px 24px;
-    text-align: center;
 }
 
 .card-evento {
@@ -333,4 +354,58 @@ body {
     color: var(--branco);
     padding: 1px 5px;
     border-radius: 4px;
+}
+
+/* ===== RODAPÉ FINAL ===== */
+
+.rodape {
+    background-color: var(--roxo);
+    color: var(--branco);
+    padding: 40px 32px 0;
+}
+
+.rodape-conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    padding-bottom: 32px;
+}
+
+.rodape-coluna h3 {
+   line-height: 1.6;
+   font-size: 14px;
+   color: var(--rosa-claro);
+}
+
+.rodape-coluna a {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.rodape-coluna p {
+    line-height: 1.6;
+    font-size: 14px;
+    color: var(--rosa-claro);
+}
+
+.rodape-coluna ul {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+}
+
+.rodape-coluna a:hover {
+    color: var(--rosa-claro);
+    text-decoration: underline;
+}
+
+.rodape-base {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 16px 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--rosa-claro);
 }
