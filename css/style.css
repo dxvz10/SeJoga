@@ -440,4 +440,8 @@ body {
     .acoes-cabecalho {
         gap: 8px;
     }
+
+    .trilho-eventos .card-evento { 
+        flex: 0 0 85%; 
+    }
 }
