@@ -34,14 +34,34 @@
 
     </header>
 <main>
+    <section class="secao-sobre">
+        <h2>Sobre o Nós</h2>
+        <p>O SeJoga é a plataforma definitiva para quem quer transformar o tempo livre em experiências inesquecíveis, conectando você de forma simples e rápida a festas, jogos, encontros e eventos de todos os tipos.</p>
+        <p>Mais do que apenas listar o que está rolando por aí, nossa ferramenta foi desenhada para centralizar e otimizar a sua jornada de entretenimento, oferecendo funcionalidades pensadas para o seu dia a dia:</p>
+        <ul>
+            <li>Descoberta Inteligente de Eventos: Navegue por um catálogo completo e atualizado em tempo real. Filtre as opções por categoria (como festas, campeonatos ou encontros), localização e data para encontrar exatamente o que combina com o seu estilo.</li>
+            <li>Informações Claras e Centralizadas: Diga adieu à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições.</li>
+            <li>Informações Claras e Centralizadas: Diga adieu à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições..</li>
+            <li>Conexão com a Comunidade: Encontre eventos que conversam com os seus interesses e descubra o que o seu grupo ou a sua região estão movimentando.</li>
+        </ul>
+        <p>Seja para planejar o fim de semana com antecedência ou para encontrar um programa de última hora, o SeJoga existe para descomplicar a sua rotina e aproximar você dos melhores momentos. Explore, decida e... SeJoga!</p>
+    </section>
+
     <section class="secao-eventos">
 
+    <div class="titulo-secao">
         <h1>Alguns eventos!</h1>
         <p class="subtitulo">Festas, jogos e encontros perto de você</p>
+    </div>
 
-        <div class="grade-eventos">
-             <!-- Cada evento é um <article>: um conteúdo que faz sentido
-                     sozinho, fora do contexto da página. -->
+        <div class="carrossel-eventos">
+            <button class="seta seta-esquerda" aria-label="Evento Anterior">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <div class="trilho-eventos">
                 <article class="card-evento">
                     <span class="categoria">Futebol</span>
                     <h2 class="titulo">Vasco  x Vitoria</h2>
@@ -80,21 +100,14 @@
                         <span class="selo-disponivel">Disponível</span>
                     </div>
                 </article>
+            </div>
+
+            <button class="seta seta-direita" aria-label="Próximo evento">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
-    </section>
-</main>  
-</body>
-    <section class="secao-sobre">
-        <h2>Sobre o Nós</h2>
-        <p>O SeJoga é a plataforma definitiva para quem quer transformar o tempo livre em experiências inesquecíveis, conectando você de forma simples e rápida a festas, jogos, encontros e eventos de todos os tipos.</p>
-        <p>Mais do que apenas listar o que está rolando por aí, nossa ferramenta foi desenhada para centralizar e otimizar a sua jornada de entretenimento, oferecendo funcionalidades pensadas para o seu dia a dia:</p>
-        <ul>
-            <li>Descoberta Inteligente de Eventos: Navegue por um catálogo completo e atualizado em tempo real. Filtre as opções por categoria (como festas, campeonatos ou encontros), localização e data para encontrar exatamente o que combina com o seu estilo.</li>
-            <li>Informações Claras e Centralizadas: Diga adieu à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições.</li>
-            <li>Informações Claras e Centralizadas: Diga adieu à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições..</li>
-            <li>Conexão com a Comunidade: Encontre eventos que conversam com os seus interesses e descubra o que o seu grupo ou a sua região estão movimentando.</li>
-        </ul>
-        <p>Seja para planejar o fim de semana com antecedência ou para encontrar um programa de última hora, o SeJoga existe para descomplicar a sua rotina e aproximar você dos melhores momentos. Explore, decida e... SeJoga!</p>
     </section>
 
     <section class="secao-contato">
@@ -113,4 +126,7 @@
             <button type="submit">Enviar</button>
         </form>
     </section>
+</main>  
+<script src="js/carrossel.js"></script>
+</body>
 </html>
