@@ -46,14 +46,20 @@ body {
     justify-content: space-between;  /* logo na esquerda, botão na direita */
     align-items: center;
     background-color: var(--roxo);
-    padding: 16px 32px;
+    padding: 8px 32px;
 }
 
 .logo {
-    color: var(--branco);
-    font-size: 22px;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
     text-decoration: none;
+}
+
+.logo img {
+    height: 56px;
+    width: auto;
+    display: block;
+    transform: scale(1.9);
 }
 
 .menu {
