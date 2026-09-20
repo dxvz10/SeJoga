@@ -350,14 +350,16 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--roxo);
     color: var(--branco);
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    font-size: 24px;
     cursor: pointer;
 }
 
@@ -366,11 +368,11 @@ body {
 }
 
 .seta-esquerda {
-    left: -12px;
+    left: 8px;
 }
 
 .seta-direita {
-    right: -12px;
+    right: 8px;
 }
 
 /* ===== CARD DE EVENTO ===== */
