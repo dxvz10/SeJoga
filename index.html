@@ -121,7 +121,7 @@
     <section class="secao-contato">
         <h2>Faça seu contato!</h2>
         <p>Tem alguma dúvida, sugestão ou quer compartilhar uma experiência? Entre em contato conosco!</p>
-        <form action="#" method="post">
+        <form id="form-contato" action="#" method="post">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 
@@ -132,6 +132,7 @@
             <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
 
             <button type="submit">Enviar</button>
+            <p class="aviso-form" id="aviso-form" role="status"></p>
         </form>
     </section>
 </main>
@@ -162,7 +163,7 @@
             <h3>Institucional</h3>
             <ul>
                 <li><a href="#">Termos de Uso</a></li>
-                <li><a href="#">Política de Privacidade</a></li>
+                <li><a >Política de Privacidade</a></li>
                 <li><a href="#">Fale Conosco</a></li>
             </ul>
         </nav>
@@ -172,7 +173,19 @@
         <p>© 2026 SeJoga — Projeto acadêmico UNISUAM · Desenvolvimento de Software para Internet</p>
     </div>
 </footer>
-<script src="js/carrossel.js"></script>
+
+<div class="modal" id="modal-contato">
+    <div class="modal-caixa">
+        <button type="button" class="modal-fechar" aria-label="Fechar">&times;</button>
+        <h2>Mensagem enviada!</h2>
+        <p id="modal-contato-texto"></p>
+
+        <div class="modal-acoes">
+            <button type="button" class="botao-cadastro modal-ok">OK</button>
+        </div>
+    </div>
+</div>
+
 <div class="modal" id="modal-conta">
     <div class="modal-caixa">
         <a href="#" class="modal-fechar" aria-label="Fechar">&times;</a>
@@ -185,5 +198,8 @@
         </div>
     </div>
 </div>
+
+<script src="js/carrossel.js"></script>
+<script src="js/contato.js"></script>
 </body>
 </html>
