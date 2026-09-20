@@ -11,7 +11,7 @@
    <header class="cabecalho">
 
         <a href="index.html" class="logo">
-            <img src="assets/logo.png" alt="Logo do SeJoga">
+            <img src="assets/logo/logo.png" alt="Logo do SeJoga">
         </a>
 
 
@@ -21,7 +21,7 @@
 
         <nav class="menu">
             <ul class="menu">
-                <li><a href="index.html">Início</a></li>
+                <li><a href="index.html" class="ativo">Início</a></li>
                 <li><a href="calendario.html">Calendário</a></li>
                 <li><a href="cadastro-evento.html">Cadastrar Evento</a></li>
             </ul>
@@ -39,10 +39,18 @@
         <p>O SeJoga é a plataforma definitiva para quem quer transformar o tempo livre em experiências inesquecíveis, conectando você de forma simples e rápida a festas, jogos, encontros e eventos de todos os tipos.</p>
         <p>Mais do que apenas listar o que está rolando por aí, nossa ferramenta foi desenhada para centralizar e otimizar a sua jornada de entretenimento, oferecendo funcionalidades pensadas para o seu dia a dia:</p>
         <ul>
-            <li>Descoberta Inteligente de Eventos: Navegue por um catálogo completo e atualizado em tempo real. Filtre as opções por categoria (como festas, campeonatos ou encontros), localização e data para encontrar exatamente o que combina com o seu estilo.</li>
-            <li>Informações Claras e Centralizadas: Diga adieu à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições.</li>
-            <li>Informações Claras e Centralizadas: Diga adieu à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições..</li>
-            <li>Conexão com a Comunidade: Encontre eventos que conversam com os seus interesses e descubra o que o seu grupo ou a sua região estão movimentando.</li>
+            <li tabindex="0">
+                <strong>Descoberta Inteligente de Eventos</strong>
+                <span>Navegue por um catálogo completo e atualizado em tempo real. Filtre as opções por categoria (como festas, campeonatos ou encontros), localização e data para encontrar exatamente o que combina com o seu estilo.</span>
+            </li>
+            <li tabindex="0">
+                <strong>Informações Claras e Centralizadas</strong>
+                <span>Diga adieu à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições.</span>
+            </li>
+            <li tabindex="0">
+                <strong>Conexão com a Comunidade</strong>
+                <span>Encontre eventos que conversam com os seus interesses e descubra o que o seu grupo ou a sua região estão movimentando.</span>
+            </li>
         </ul>
         <p>Seja para planejar o fim de semana com antecedência ou para encontrar um programa de última hora, o SeJoga existe para descomplicar a sua rotina e aproximar você dos melhores momentos. Explore, decida e... SeJoga!</p>
     </section>
@@ -165,5 +173,17 @@
     </div>
 </footer>
 <script src="js/carrossel.js"></script>
+<div class="modal" id="modal-conta">
+    <div class="modal-caixa">
+        <a href="#" class="modal-fechar" aria-label="Fechar">&times;</a>
+        <h2>Bem-vindo ao SeJoga!</h2>
+        <p>Para acessar todas as funcionalidades, faça login ou cadastre-se.</p>
+
+        <div class="modal-acoes">
+            <a href="login.html" class="botao-entrar">Entrar</a>
+            <a href="cadastro.html" class="botao-cadastro">Cadastrar</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

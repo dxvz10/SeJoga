@@ -47,6 +47,10 @@ body {
     align-items: center;
     background-color: var(--roxo);
     padding: 8px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
 .acoes-cabecalho {
@@ -76,17 +80,44 @@ body {
 .menu a {
     color: var(--branco);
     text-decoration: none;
+    position: relative;
+    padding: 4px;
+}
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--rosa-claro);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s;
+}
+
+.menu a:hover::after {
+    transform: scaleX(1);
 }
 
 .menu a:hover {
    color: var(--rosa-claro);
 }
 
+.menu a.ativo::after {
+    transform: scaleX(1);
+}
+
+/* ===== BOTÕES ===== */
+
 .botao-entrar {
-    background-color: var(--rosa);
+    background-color: transparent;
     color: var(--branco);
     padding: 10px 20px;
+    border: 2px solid var(--branco);
     border-radius: 6px;
+    padding: 8px 18px;
     text-decoration: none;
     font-weight: bold;
 }
@@ -105,24 +136,28 @@ body {
 }
 
 .botao-entrar:hover {
-    background-color: var(--rosa-escuro);
+    background-color: var(--branco);
+    color: var(--roxo);
 }
 
 /* ===== SOBRE NÓS ===== */
 .secao-sobre {
-    background-color: var(--roxo-claro);
-    padding: 40px 24px;
+    padding: 64px 24px;
     text-align: left;
+    background-image: linear-gradient(rgba(61, 10, 78, 0.60), rgba(61, 10, 78, 0.75)), url("../assets/backgrounds/fundo-sobre.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .secao-sobre h2 {
-    color: var(--roxo);
+    color: var(--branco);
     font-size: 32px;
     margin-bottom: 16px;
 }
 
 .secao-sobre p {
-    color: var(--roxo-escuro);
+    color: var(--branco);
     margin-bottom: 16px;
     line-height: 1.6;
     font-size: 16px;
@@ -145,24 +180,57 @@ body {
     padding: 16px 20px;
     line-height: 1.6;
     color: var(--roxo-escuro);
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.secao-sobre li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.secao-sobre li strong {
+    display: block;
+    font-size: 18px;
+    color: var(--roxo);
+}
+
+.secao-sobre li span {
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.35s, opacity 0.35s, margin-top 0.35s;
+}
+
+.secao-sobre li:hover span,
+.secao-sobre li:focus-within span,
+.secao-sobre li:focus span {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 8px;
 }
 
 /* ===== CONTATO ===== */
 
 .secao-contato {
-   background-color: var(--roxo-claro);
-   padding: 40px 24px;
+   padding: 64px 24px;
+    text-align: left;
+    background-image: linear-gradient(rgba(61, 10, 78, 0.60), rgba(61, 10, 78, 0.75)), url("../assets/backgrounds/fundo-sobre.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .secao-contato h2 {
-    color: var(--roxo);
+    color: var(--branco);
     font-size: 28px;
     margin-bottom: 8px;
 }
 
 .secao-contato p {
     line-height: 1.6;
-    color: var(--roxo-escuro);
+    color: var(--branco);
     margin-bottom: 24px;
 }
 
@@ -211,21 +279,30 @@ body {
     background-color: var(--rosa-escuro);
 }
 
+/* =====  SEÇÃO EVENTOS ===== */
+
 .secao-eventos {
+    max-width: none;
+    padding: 64px 24px;
+    background-image: linear-gradient(rgba(61, 10, 78, 0.72), rgba(61, 10, 78, 0.82)), url("../assets/backgrounds/fundo-eventos.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.secao-eventos .titulo-secao,
+.secao-eventos .carrossel-eventos {
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 24px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.subtitulo {
-    color: var(--cinza-texto);
-    font-size: 18px;
-    margin-bottom: 32px;
+.secao-eventos .titulo-secao h1 {
+    color: var(--branco);
 }
 
-.titulo-secao {
-    text-align: center;
-    margin-bottom: 32px;
+.secao-eventos .subtitulo {
+    color: var(--rosa-claro);
 }
 
 /* ===== CARROSSEL DE EVENTOS ===== */
@@ -296,6 +373,8 @@ body {
     right: -12px;
 }
 
+/* ===== CARD DE EVENTO ===== */
+
 .card-evento {
     background-color: var(--branco);
     border-radius: 10px;
@@ -330,6 +409,8 @@ body {
 .preco{
     font-weight: bold;
 }
+
+/* ===== SELOS DE STATUS ===== */
 
 .selo-disponivel{
     background-color: var(--status-disponivel);
@@ -401,6 +482,7 @@ body {
     width: 24px;
     height: 24px;
     display: block;
+    filter: brightness(0) invert(1);
 }
 
 .rodape-coluna a:hover {
@@ -414,6 +496,59 @@ body {
     text-align: center;
     font-size: 13px;
     color: var(--rosa-claro);
+}
+
+/* ===== MODAL ===== */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.modal:target {
+    display: flex;
+}
+
+.modal-caixa {
+    position: relative;
+    background-color: var(--branco);
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 420px;
+    text-align: center;
+}
+
+.modal-caixa h2 {
+    color: var(--roxo);
+    margin-bottom: 12px;
+}
+
+.modal-caixa p {
+    color: var(--cinza-texto);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.modal-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.modal-fechar {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--cinza-texto);
+    text-decoration: none;
 }
 
 /* @media = "aplique estas regras SÓ quando a condição for verdadeira".
@@ -443,5 +578,19 @@ body {
 
     .trilho-eventos .card-evento { 
         flex: 0 0 85%; 
+    }
+
+    .secao-sobre li span {
+        max-height: none;
+        opacity: 1;
+        margin-top: 8px;
+    }
+
+    .secao-sobre {
+        background-attachment: scroll;   /* volta ao comportamento normal */
+    }
+
+    .secao-contato {
+        background-attachment: scroll;   /* volta ao comportamento normal */
     }
 }
