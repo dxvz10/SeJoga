@@ -206,7 +206,7 @@ body {
 .secao-sobre li:hover span,
 .secao-sobre li:focus-within span,
 .secao-sobre li:focus span {
-    max-height: 200px;
+    max-height: 80px;
     opacity: 1;
     margin-top: 8px;
 }
@@ -328,7 +328,7 @@ body {
     flex: 0 0 70%;
     scroll-snap-align: center;
     transform: scale(0.9);
-    opacity: 0.95;
+    opacity: 0.6;
     transition: transform 0.35s, opacity 0.35s;    
 }
 
