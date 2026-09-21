@@ -1,0 +1,492 @@
+/* eventos.CSS */
+
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    /* Identidade — roxo e rosa */
+    --roxo-escuro: #3D0A4E;
+    /* textos e títulos */
+    --roxo: #6A1B7A;
+    /* cor de marca: menu, cabeçalhos */
+    --roxo-claro: #F5EAF8;
+    /* fundos suaves */
+    --rosa: #C2185B;
+    /* ação principal: botões */
+    --rosa-escuro: #8E1147;
+    /* o mesmo rosa no hover */
+    --rosa-claro: #F8BBD0;
+    /* destaques leves */
+    /* Neutros */
+    --branco: #FFFFFF;
+    --cinza-claro: #F4F2F5;
+    --cinza-borda: #D6D0DA;
+    --cinza-texto: #5C5560;
+    /* Sinalização de evento — as 4 cores de status */
+    --status-disponivel: #2E7D32;
+    /* verde  */
+    --status-perto: #B26A00;
+    /* âmbar  */
+    --status-esgotado: #B3261E;
+    /* vermelho */
+    --status-realizado: #6E6E6E;
+    /* cinza  */
+}
+
+body {
+    background-color: var(--cinza-claro);
+    color: var(--roxo-escuro);
+}
+
+
+/* ===== CABEÇALHO ===== */
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    /* logo na esquerda, botão na direita */
+    align-items: center;
+    background-color: var(--roxo);
+    padding: 8px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.acoes-cabecalho {
+    display: flex;
+    gap: 12px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 56px;
+    width: auto;
+    display: block;
+    transform: scale(1.9);
+}
+
+.menu {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    /* tira as bolinhas da lista */
+}
+
+.menu a {
+    color: var(--branco);
+    text-decoration: none;
+    position: relative;
+    padding: 4px;
+}
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--rosa-claro);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s;
+}
+
+.menu a:hover::after {
+    transform: scaleX(1);
+}
+
+.menu a:hover {
+    color: var(--rosa-claro);
+}
+
+.menu a.ativo::after {
+    transform: scaleX(1);
+}
+
+
+/* CONTEÚDO */
+
+.conteudo {
+    min-height: calc(100vh - 170px);
+    padding: 35px 5%;
+}
+
+
+/* Título */
+
+.titulo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo h1 {
+    font-size: 32px;
+    color: #42104f;
+    margin-bottom: 8px;
+}
+
+.titulo p {
+    color: #666;
+    font-size: 16px;
+}
+
+
+/* CALENDÁRIO */
+
+.calendario-container {
+    background-color: white;
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Cabeçalho do calendário */
+
+.calendario-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.calendario-topo h2 {
+    font-size: 25px;
+    color: #551160;
+}
+
+
+/* Setas */
+
+.seta {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background-color: #71177f;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.seta:hover {
+    background-color: #571163;
+}
+
+
+/* DIAS DA SEMANA */
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #71177f;
+    color: white;
+    border-radius: 6px 6px 0 0;
+}
+
+.dias-semana div {
+    text-align: center;
+    padding: 13px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+/* DIAS DO CALENDÁRIO */
+
+.dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+
+.dia {
+    min-height: 105px;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+
+/* Quando passar o mouse */
+
+.dia:hover {
+    background-color: #f5eafa;
+    cursor: pointer;
+}
+
+
+/* Espaços vazios */
+
+.dia.vazio {
+    background-color: #f7f7f7;
+}
+
+
+/* Dia que possui evento */
+
+.dia.evento {
+    background-color: #faf0fc;
+    font-weight: bold;
+    position: relative;
+}
+
+
+/* Nome do evento */
+
+.dia small {
+    display: block;
+    margin-top: 12px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #d4145a;
+    color: white;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+
+/* EVENTOS EM DESTAQUE */
+
+.eventos {
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.eventos>h2 {
+    color: #42104f;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+
+/* Área dos cards */
+
+.cards-eventos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* Card */
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    transition: 0.2s;
+}
+
+
+/* Categoria */
+
+.categoria {
+    color: #71177f;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* Nome */
+
+.card h3 {
+    margin: 8px 0 15px;
+    color: #42104f;
+    font-size: 21px;
+}
+
+
+/* Informações */
+
+.card p {
+    margin-bottom: 7px;
+    color: #555;
+}
+
+
+/* ===== BOTÕES ===== */
+
+.botao-entrar {
+    background-color: transparent;
+    color: var(--branco);
+    padding: 10px 20px;
+    border: 2px solid var(--branco);
+    border-radius: 6px;
+    padding: 8px 18px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.botao-cadastro {
+    background-color: var(--rosa);
+    color: var(--branco);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.botao-cadastro:hover {
+    background-color: var(--rosa-escuro);
+}
+
+.botao-entrar:hover {
+    background-color: var(--branco);
+    color: var(--roxo);
+}
+
+
+/* RODAPÉ */
+
+.rodape {
+    background-color: #71177f;
+    color: white;
+    min-height: 80px;
+    padding: 20px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rodape h3 {
+    margin-bottom: 5px;
+}
+
+.rodape p {
+    font-size: 14px;
+}
+
+
+/* ===== RODAPÉ FINAL ===== */
+
+.rodape {
+    background-color: var(--roxo);
+    color: var(--branco);
+    padding: 40px 32px 0;
+}
+
+.rodape-conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    padding-bottom: 32px;
+}
+
+.rodape-coluna h3 {
+    line-height: 1.6;
+    font-size: 14px;
+    color: var(--rosa-claro);
+}
+
+.rodape-coluna a {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.rodape-coluna p {
+    line-height: 1.6;
+    font-size: 14px;
+    color: var(--rosa-claro);
+}
+
+.rodape-coluna ul {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+}
+
+.rodape-coluna ul img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.rodape-coluna a:hover {
+    color: var(--rosa-claro);
+    text-decoration: underline;
+}
+
+.rodape-base {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 16px 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--rosa-claro);
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 800px) {
+    .cabecalho {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+        padding: 20px;
+    }
+    .menu {
+        gap: 15px;
+    }
+    .cards-eventos {
+        grid-template-columns: 1fr;
+    }
+    .dia {
+        min-height: 80px;
+        font-size: 13px;
+    }
+    .dia small {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 500px) {
+    .menu {
+        flex-direction: column;
+        text-align: center;
+    }
+    .botoes {
+        width: 100%;
+        justify-content: center;
+    }
+    .conteudo {
+        padding: 20px 10px;
+    }
+    .calendario-container {
+        padding: 10px;
+    }
+    .dias-semana div {
+        font-size: 10px;
+        padding: 8px 2px;
+    }
+}
