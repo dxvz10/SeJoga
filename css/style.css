@@ -565,6 +565,11 @@ body {
     font-size: 15px;
 }
 
+.modal-acoes .botao-entrar {
+    color: var(--roxo);
+    border-color: var(--roxo);
+}
+
 /* ===== AVISO DO FORMULÁRIO ===== */
 
 .aviso-form {
