@@ -21,29 +21,23 @@
     <header class="cabecalho">
 
         <!-- Logo / nome do site -->
-        <div class="logo">
-            <span>🕷️</span>
-            <strong>SeJoga</strong>
-        </div>
+        <a href="index.html" class="logo">
+            <img src="assets/logo/logo.png" alt="Logo do SeJoga">
+        </a>
 
         <!-- Menu -->
         <nav class="menu">
-            <a href="#">Início</a>
-            <a href="#" class="ativo">Calendário</a>
-            <a href="#">Cadastrar Evento</a>
+            <ul class="menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="calendario.html" class="ativo" data-precisa-loin>Calendário</a></li>
+                <li><a href="cadastro-evento.html" data-precisa-loin>Cadastrar Evento</a></li>
+            </ul>
         </nav>
 
         <!-- Botões -->
-        <div class="botoes">
-
-            <button class="btn-cadastrar">
-                Cadastrar
-            </button>
-
-            <button class="btn-entrar">
-                Entrar
-            </button>
-
+        <div class="acoes-cabecalho">
+            <a href="cadastro.html" class="botao-cadastro">Cadastrar</a>
+            <a href="login.html" class="botao-entrar">Entrar</a>
         </div>
 
     </header>
@@ -267,25 +261,42 @@
     <!-- RODAPÉ -->
 
     <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div class="rodape-coluna">
+                <h3>SeJoga</h3>
+                <p>Festas, jogos e encontros perto de você. Encontre o próximo rolê sem precisar caçar em dez lugares diferentes.</p>
+            </div>
 
-        <div>
+            <nav class="rodape-coluna">
+                <h3>Redes Sociais</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.instagram.com/se.jogaaa/">
+                            <img src="img/icons/instagram.png" alt="Instagram">
+                        </a>
+                    </li>
 
-            <h3>SeJoga</h3>
+                    <li>
+                        <a href="https://x.com/sejogaaaa">
+                            <img src="img/icons/twitter.png" alt="Twitter">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-            <p>
-                Encontre seu próximo evento.
-            </p>
-
+            <nav class="rodape-coluna">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a>Política de Privacidade</a></li>
+                    <li><a href="#">Fale Conosco</a></li>
+                </ul>
+            </nav>
         </div>
 
-        <div>
-
-            <p>
-                © 2026 SeJoga - Todos os direitos reservados.
-            </p>
-
+        <div class="rodape-base">
+            <p>© 2026 SeJoga — Projeto acadêmico UNISUAM · Desenvolvimento de Software para Internet</p>
         </div>
-
     </footer>
 
 </body>
