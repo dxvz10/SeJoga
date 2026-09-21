@@ -1,0 +1,381 @@
+/* eventos.CSS */
+
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f2f5;
+    color: #40104d;
+}
+
+
+/* CABEÇALHO */
+
+.cabecalho {
+    height: 90px;
+    background-color: #71177f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+    color: white;
+}
+
+
+/* Logo */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 23px;
+}
+
+.logo span {
+    font-size: 28px;
+}
+
+
+/* Menu */
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    opacity: 0.7;
+}
+
+
+/* Botões */
+
+.botoes {
+    display: flex;
+    gap: 12px;
+}
+
+.botoes button {
+    border: none;
+    padding: 11px 22px;
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-cadastrar,
+.btn-entrar {
+    background-color: #d4145a;
+}
+
+.botoes button:hover {
+    opacity: 0.85;
+}
+
+
+/* CONTEÚDO */
+
+.conteudo {
+    min-height: calc(100vh - 170px);
+    padding: 35px 5%;
+}
+
+
+/* Título */
+
+.titulo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo h1 {
+    font-size: 32px;
+    color: #42104f;
+    margin-bottom: 8px;
+}
+
+.titulo p {
+    color: #666;
+    font-size: 16px;
+}
+
+
+/* CALENDÁRIO */
+
+.calendario-container {
+    background-color: white;
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Cabeçalho do calendário */
+
+.calendario-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.calendario-topo h2 {
+    font-size: 25px;
+    color: #551160;
+}
+
+
+/* Setas */
+
+.seta {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background-color: #71177f;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.seta:hover {
+    background-color: #571163;
+}
+
+
+/* DIAS DA SEMANA */
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #71177f;
+    color: white;
+    border-radius: 6px 6px 0 0;
+}
+
+.dias-semana div {
+    text-align: center;
+    padding: 13px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+/* DIAS DO CALENDÁRIO */
+
+.dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+
+.dia {
+    min-height: 105px;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+
+/* Quando passar o mouse */
+
+.dia:hover {
+    background-color: #f5eafa;
+    cursor: pointer;
+}
+
+
+/* Espaços vazios */
+
+.dia.vazio {
+    background-color: #f7f7f7;
+}
+
+
+/* Dia que possui evento */
+
+.dia.evento {
+    background-color: #faf0fc;
+    font-weight: bold;
+    position: relative;
+}
+
+
+/* Nome do evento */
+
+.dia small {
+    display: block;
+    margin-top: 12px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #d4145a;
+    color: white;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+
+/* EVENTOS EM DESTAQUE */
+
+.eventos {
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.eventos>h2 {
+    color: #42104f;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+
+/* Área dos cards */
+
+.cards-eventos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* Card */
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    transition: 0.2s;
+}
+
+
+/* Categoria */
+
+.categoria {
+    color: #71177f;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* Nome */
+
+.card h3 {
+    margin: 8px 0 15px;
+    color: #42104f;
+    font-size: 21px;
+}
+
+
+/* Informações */
+
+.card p {
+    margin-bottom: 7px;
+    color: #555;
+}
+
+
+/* Botão */
+
+.card button {
+    margin-top: 12px;
+    border: none;
+    background-color: #d4145a;
+    color: white;
+    padding: 9px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* RODAPÉ */
+
+.rodape {
+    background-color: #71177f;
+    color: white;
+    min-height: 80px;
+    padding: 20px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rodape h3 {
+    margin-bottom: 5px;
+}
+
+.rodape p {
+    font-size: 14px;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 800px) {
+    .cabecalho {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+        padding: 20px;
+    }
+    .menu {
+        gap: 15px;
+    }
+    .cards-eventos {
+        grid-template-columns: 1fr;
+    }
+    .dia {
+        min-height: 80px;
+        font-size: 13px;
+    }
+    .dia small {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 500px) {
+    .menu {
+        flex-direction: column;
+        text-align: center;
+    }
+    .botoes {
+        width: 100%;
+        justify-content: center;
+    }
+    .conteudo {
+        padding: 20px 10px;
+    }
+    .calendario-container {
+        padding: 10px;
+    }
+    .dias-semana div {
+        font-size: 10px;
+        padding: 8px 2px;
+    }
+}

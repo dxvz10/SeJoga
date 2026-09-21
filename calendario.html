@@ -1,0 +1,293 @@
+<!-- eventos.html -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SeJoga - Calendário de Eventos</title>
+
+    <!-- Ligação com o arquivo CSS -->
+
+    <link rel="stylesheet" href="css/calendario/style.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header class="cabecalho">
+
+        <!-- Logo / nome do site -->
+        <div class="logo">
+            <span>🕷️</span>
+            <strong>SeJoga</strong>
+        </div>
+
+        <!-- Menu -->
+        <nav class="menu">
+            <a href="#">Início</a>
+            <a href="#" class="ativo">Calendário</a>
+            <a href="#">Cadastrar Evento</a>
+        </nav>
+
+        <!-- Botões -->
+        <div class="botoes">
+
+            <button class="btn-cadastrar">
+                Cadastrar
+            </button>
+
+            <button class="btn-entrar">
+                Entrar
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTEUDO PRINCIPAL -->
+
+    <main class="conteudo">
+
+        <!-- Título da página -->
+
+        <section class="titulo">
+
+            <h1>Calendário de Eventos</h1>
+
+            <p>
+                Encontre festas, jogos, encontros e eventos perto de você.
+            </p>
+
+        </section>
+
+
+        <!-- CALENDARIO -->
+
+        <section class="calendario-container">
+
+            <!-- Cabeçalho do calendário -->
+
+            <div class="calendario-topo">
+
+                <button class="seta">
+                    ‹
+                </button>
+
+                <h2>Setembro 2026</h2>
+
+                <button class="seta">
+                    ›
+                </button>
+
+            </div>
+
+
+            <!-- Dias da semana -->
+
+            <div class="dias-semana">
+
+                <div>DOM</div>
+                <div>SEG</div>
+                <div>TER</div>
+                <div>QUA</div>
+                <div>QUI</div>
+                <div>SEX</div>
+                <div>SÁB</div>
+
+            </div>
+
+
+            <!-- Dias do mês -->
+
+            <div class="dias">
+
+                <!-- Espaços antes do dia 1 -->
+
+                <div class="dia vazio"></div>
+                <div class="dia vazio"></div>
+                <div class="dia">1</div>
+                <div class="dia">2</div>
+                <div class="dia">3</div>
+                <div class="dia">4</div>
+                <div class="dia">5</div>
+
+
+                <div class="dia">6</div>
+                <div class="dia">7</div>
+                <div class="dia evento">
+                    <span>8</span>
+                    <small>Festa</small>
+                </div>
+                <div class="dia">9</div>
+                <div class="dia">10</div>
+                <div class="dia evento">
+                    <span>11</span>
+                    <small>Futebol</small>
+                </div>
+                <div class="dia">12</div>
+
+
+                <div class="dia">13</div>
+                <div class="dia">14</div>
+                <div class="dia">15</div>
+                <div class="dia evento">
+                    <span>16</span>
+                    <small>Show</small>
+                </div>
+                <div class="dia">17</div>
+                <div class="dia">18</div>
+                <div class="dia">19</div>
+
+
+                <div class="dia">20</div>
+                <div class="dia evento">
+                    <span>21</span>
+                    <small>Games</small>
+                </div>
+                <div class="dia">22</div>
+                <div class="dia">23</div>
+                <div class="dia evento">
+                    <span>24</span>
+                    <small>Festival</small>
+                </div>
+                <div class="dia">25</div>
+                <div class="dia">26</div>
+
+
+                <div class="dia">27</div>
+                <div class="dia">28</div>
+                <div class="dia">29</div>
+                <div class="dia">30</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EVENTOS EM DESTAQUE -->
+
+        <section class="eventos">
+
+            <h2>Eventos em destaque</h2>
+
+            <div class="cards-eventos">
+
+                <!-- Evento 1 -->
+
+                <article class="card">
+
+                    <span class="categoria">
+                        FUTEBOL
+                    </span>
+
+                    <h3>
+                        Flamengo vs Palmeiras
+                    </h3>
+
+                    <p>
+                        📍 Maracanã
+                    </p>
+
+                    <p>
+                        📅 10/09/2026
+                    </p>
+
+                    <button>
+                        Ver evento
+                    </button>
+
+                </article>
+
+
+                <!-- Evento 2 -->
+
+                <article class="card">
+
+                    <span class="categoria">
+                        E-SPORTS
+                    </span>
+
+                    <h3>
+                        Loud x NRG
+                    </h3>
+
+                    <p>
+                        📍 Los Angeles Arena
+                    </p>
+
+                    <p>
+                        📅 20/09/2026
+                    </p>
+
+                    <button>
+                        Ver evento
+                    </button>
+
+                </article>
+
+
+                <!-- Evento 3 -->
+
+                <article class="card">
+
+                    <span class="categoria">
+                        SHOW
+                    </span>
+
+                    <h3>
+                        Festival SeJoga
+                    </h3>
+
+                    <p>
+                        📍 Rio de Janeiro
+                    </p>
+
+                    <p>
+                        📅 24/09/2026
+                    </p>
+
+                    <button>
+                        Ver evento
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer class="rodape">
+
+        <div>
+
+            <h3>SeJoga</h3>
+
+            <p>
+                Encontre seu próximo evento.
+            </p>
+
+        </div>
+
+        <div>
+
+            <p>
+                © 2026 SeJoga - Todos os direitos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
