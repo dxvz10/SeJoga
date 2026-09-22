@@ -598,6 +598,67 @@ body {
 /* @media = "aplique estas regras SÓ quando a condição for verdadeira".
    max-width: 767px significa "telas de até 767px" — celular.
    Acima disso, nada aqui vale, e o layout de desktop continua intacto. */
+/* ===== CABEÇALHO: ESTADO LOGADO ===== */
+
+/* Sem isto os itens esticam até a altura do mais alto (o avatar),
+   e o botão Sair fica com 36px em vez do tamanho do seu texto. */
+.acoes-cabecalho {
+    align-items: center;
+}
+
+.usuario-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* A foto do usuário. Enquanto não houver foto escolhida no
+   cadastro, o fundo é uma silhueta genérica desenhada em SVG
+   e embutida aqui mesmo (data URI) — não precisa de arquivo.
+   Quando houver foto, o auth.js troca este background. */
+.usuario-avatar {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;             /* não deixa o círculo achatar */
+    border-radius: 50%;
+    border: 2px solid var(--branco);
+    background-color: var(--roxo-claro);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236A1B7A'%3E%3Cpath d='M12 12.4c2.65 0 4.8-2.15 4.8-4.8S14.65 2.8 12 2.8 7.2 4.95 7.2 7.6s2.15 4.8 4.8 4.8zm0 2.4c-3.2 0-9.6 1.61-9.6 4.8V22h19.2v-2.4c0-3.19-6.4-4.8-9.6-4.8z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+}
+
+.usuario-nome {
+    color: var(--branco);
+    font-weight: bold;
+}
+
+/* O "Sair" é secundário: menor e mais discreto que o avatar,
+   para o nome continuar sendo o elemento principal. */
+.botao-sair {
+    background-color: transparent;
+    color: var(--branco);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.botao-sair:hover {
+    background-color: var(--branco);
+    color: var(--roxo);
+    border-color: var(--branco);
+}
+
+/* Garante que o atributo hidden vença qualquer display
+   que venha de outra regra. */
+[hidden] {
+    display: none !important;
+}
+
+
 @media (max-width: 767px) {
 
     .cabecalho {

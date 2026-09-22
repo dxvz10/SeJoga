@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeJoga - Calendário de Eventos</title>
-    <link rel="stylesheet" href="css/style.css"
     <link rel="stylesheet" href="css/calendario/style.css">
     <link rel="icon" href="assets/logo/favicon-sj.png" type="image/png">
 </head>
@@ -34,8 +33,17 @@
 
         <!-- Botões -->
         <div class="acoes-cabecalho">
-            <a href="cadastro.html" class="botao-cadastro">Cadastrar</a>
-            <a href="login.html" class="botao-entrar">Entrar</a>
+            <!-- Os dois estados do cabeçalho moram aqui. O atributo hidden
+                 (do próprio HTML, não precisa de CSS) esconde um dos pares;
+                 o auth.js decide qual, lendo a sessão no localStorage. -->
+            <a href="cadastro.html" class="botao-cadastro" data-sessao="deslogado">Cadastrar</a>
+            <a href="login.html" class="botao-entrar" data-sessao="deslogado">Entrar</a>
+
+            <span class="usuario-info" data-sessao="logado" hidden>
+                <span class="usuario-avatar" id="usuario-avatar"></span>
+                <span class="usuario-nome"></span>
+            </span>
+            <button type="button" class="botao-sair" id="botao-sair" data-sessao="logado" hidden>Sair</button>
         </div>
 
     </header>
@@ -65,17 +73,9 @@
             <!-- Cabeçalho do calendário -->
 
             <div class="calendario-topo">
-
-                <button class="seta">
-                    ‹
-                </button>
-
-                <h2>Setembro 2026</h2>
-
-                <button class="seta">
-                    ›
-                </button>
-
+                <button type="button" class="seta" id="mes-anterior" aria-label="Mês anterior">‹</button>
+                <h2 id="mes-ano">Carregando…</h2>
+                <button type="button" class="seta" id="mes-seguinte" aria-label="Próximo mês">›</button>
             </div>
 
 
@@ -96,66 +96,8 @@
 
             <!-- Dias do mês -->
 
-            <div class="dias">
-
-                <!-- Espaços antes do dia 1 -->
-
-                <div class="dia vazio"></div>
-                <div class="dia vazio"></div>
-                <div class="dia">1</div>
-                <div class="dia">2</div>
-                <div class="dia">3</div>
-                <div class="dia">4</div>
-                <div class="dia">5</div>
-
-
-                <div class="dia">6</div>
-                <div class="dia">7</div>
-                <div class="dia evento">
-                    <span>8</span>
-                    <small>Festa</small>
-                </div>
-                <div class="dia">9</div>
-                <div class="dia">10</div>
-                <div class="dia evento">
-                    <span>11</span>
-                    <small>Futebol</small>
-                </div>
-                <div class="dia">12</div>
-
-
-                <div class="dia">13</div>
-                <div class="dia">14</div>
-                <div class="dia">15</div>
-                <div class="dia evento">
-                    <span>16</span>
-                    <small>Show</small>
-                </div>
-                <div class="dia">17</div>
-                <div class="dia">18</div>
-                <div class="dia">19</div>
-
-
-                <div class="dia">20</div>
-                <div class="dia evento">
-                    <span>21</span>
-                    <small>Games</small>
-                </div>
-                <div class="dia">22</div>
-                <div class="dia">23</div>
-                <div class="dia evento">
-                    <span>24</span>
-                    <small>Festival</small>
-                </div>
-                <div class="dia">25</div>
-                <div class="dia">26</div>
-
-
-                <div class="dia">27</div>
-                <div class="dia">28</div>
-                <div class="dia">29</div>
-                <div class="dia">30</div>
-
+            <div class="dias" id="grade-dias">
+                <!-- Os dias são desenhados pelo js/calendario.js. -->
             </div>
 
         </section>
@@ -167,88 +109,8 @@
 
             <h2>Eventos em destaque</h2>
 
-            <div class="cards-eventos">
-
-                <!-- Evento 1 -->
-
-                <article class="card">
-
-                    <span class="categoria">
-                        FUTEBOL
-                    </span>
-
-                    <h3>
-                        Flamengo vs Palmeiras
-                    </h3>
-
-                    <p>
-                        📍 Maracanã
-                    </p>
-
-                    <p>
-                        📅 10/09/2026
-                    </p>
-
-                    <button>
-                        Ver evento
-                    </button>
-
-                </article>
-
-
-                <!-- Evento 2 -->
-
-                <article class="card">
-
-                    <span class="categoria">
-                        E-SPORTS
-                    </span>
-
-                    <h3>
-                        Loud x NRG
-                    </h3>
-
-                    <p>
-                        📍 Los Angeles Arena
-                    </p>
-
-                    <p>
-                        📅 20/09/2026
-                    </p>
-
-                    <button>
-                        Ver evento
-                    </button>
-
-                </article>
-
-
-                <!-- Evento 3 -->
-
-                <article class="card">
-
-                    <span class="categoria">
-                        SHOW
-                    </span>
-
-                    <h3>
-                        Festival SeJoga
-                    </h3>
-
-                    <p>
-                        📍 Rio de Janeiro
-                    </p>
-
-                    <p>
-                        📅 24/09/2026
-                    </p>
-
-                    <button>
-                        Ver evento
-                    </button>
-
-                </article>
-
+            <div class="cards-eventos" id="cards-eventos">
+                <!-- Os cards vêm da lista única do js/eventos.js. -->
             </div>
 
         </section>
@@ -308,7 +170,11 @@
         </div>
     </div>
 </div>
+<!-- A ordem importa: auth.js define obterSessao(),
+     o eventos.js define a lista, e o calendario.js usa os dois. -->
 <script src="js/home/auth.js"></script>
+<script src="js/eventos.js"></script>
+<script src="js/calendario.js"></script>
 </body>
 
 </html>

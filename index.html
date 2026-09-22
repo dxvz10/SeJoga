@@ -24,8 +24,17 @@
         </nav>
 
     <div class="acoes-cabecalho">
-        <a href="cadastro.html" class="botao-cadastro">Cadastrar</a>
-        <a href="login.html" class="botao-entrar">Entrar</a>
+        <!-- Os dois estados do cabeçalho moram aqui. O atributo hidden
+             (do próprio HTML, não precisa de CSS) esconde um dos pares;
+             o auth.js decide qual, lendo a sessão no localStorage. -->
+        <a href="cadastro.html" class="botao-cadastro" data-sessao="deslogado">Cadastrar</a>
+        <a href="login.html" class="botao-entrar" data-sessao="deslogado">Entrar</a>
+
+        <span class="usuario-info" data-sessao="logado" hidden>
+            <span class="usuario-avatar" id="usuario-avatar"></span>
+            <span class="usuario-nome"></span>
+        </span>
+        <button type="button" class="botao-sair" id="botao-sair" data-sessao="logado" hidden>Sair</button>
     </div>
 
     </header>
@@ -66,44 +75,8 @@
             </button>
 
             <div class="trilho-eventos">
-                <article class="card-evento">
-                    <span class="categoria">Futebol</span>
-                    <h2 class="titulo">Vasco  x Vitoria</h2>
-                    <p class="local">Maracanã</p>
-                    <p class="data">10/09/2026</p>
-                    <p class="descricao">Venha assistir Vasco x Vitoria pela Copa Betano do Brasil!</p>
-
-                    <div class="rodape-card">
-                        <span class="preco">R$ 50,00</span>
-                        <span class="selo-esgotado">Esgotado</span>
-                    </div>
-                </article>
-                
-                <article class="card-evento">
-                    <span class="categoria">E-sports</span>
-                    <h2 class="titulo">Loud x NRG</h2>
-                    <p class="local">Los Angeles Arena</p>
-                    <p class="data">20/10/2026</p>
-                    <p class="descricao">Venha assistir Loud x NRG pelo VCT Americas Stage 2!</p>
-
-                    <div class="rodape-card">
-                        <span class="preco">R$ 100,00</span>
-                        <span class="selo-realizado">Realizado</span>
-                    </div>
-                </article>
-
-                <article class="card-evento">
-                    <span class="categoria">Rolê</span>
-                    <h2 class="titulo">Resenha do Arrocha</h2>
-                    <p class="local">Rio de Janeiro - Lapa</p>
-                    <p class="data">21/08/2026</p>
-                    <p class="descricao">Venha aproveitar bons drinks, comidas, e muita música boa!</p>
-
-                    <div class="rodape-card">
-                        <span class="preco">R$ 100,00</span>
-                        <span class="selo-disponivel">Disponível</span>
-                    </div>
-                </article>
+                <!-- Os cards são montados pelo js/home/destaques.js,
+                     a partir da lista única do js/eventos.js. -->
             </div>
 
             <button class="seta seta-direita" aria-label="Próximo evento">
@@ -195,8 +168,12 @@
     </div>
 </div>
 
+<!-- A ordem importa: auth.js define obterSessao(), que o eventos.js usa;
+     o destaques.js monta os cards que o carrossel.js precisa encontrar. -->
+<script src="js/home/auth.js"></script>
+<script src="js/eventos.js"></script>
+<script src="js/home/destaques.js"></script>
 <script src="js/home/carrossel.js"></script>
 <script src="js/home/contato.js"></script>
-<script src="js/home/auth.js"></script>
 </body>
 </html>
