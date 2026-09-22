@@ -13,11 +13,13 @@ function atualizarCarrosel() {
         card.classList.toggle('ativo', i === indiceAtual);
     });
 
-    cards[indiceAtual].scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center',
-        block: 'nearest'
-    })
+    const card = cards[indiceAtual];
+    const alvo = card.offsetLeft - (trilho.offsetWidth - card.offsetWidth) / 2;
+
+    trilho.scrollTo({
+        left: alvo,
+        behavior: 'smooth'
+    });
 }
 
 // ===== ROLAGEM AUTOMATICA =====

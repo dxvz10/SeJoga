@@ -14,24 +14,6 @@
             <img src="assets/logo/logo.png" alt="Logo do SeJoga">
         </a>
 
-
-        <!-- O menu é uma LISTA de links. Parece estranho no começo,
-             mas é o padrão: um menu é literalmente uma lista de opções,
-             e leitores de tela anunciam "lista com 3 itens" pro usuário. -->
-
-        <nav class="menu">
-            <ul class="menu">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="calendario.html" data-precisa-login>Calendário</a></li>
-                <li><a href="cadastro-evento.html" data-precisa-login>Cadastrar Evento</a></li>
-            </ul>
-        </nav>
-
-    <div class="acoes-cabecalho">
-        <a href="cadastro.html" class="botao-cadastro">Cadastrar</a>
-        <a href="login.html" class="botao-entrar">Entrar</a>
-    </div>
-
     </header>
     <main>
         <section class="secao-login">
@@ -41,15 +23,17 @@
 
             <form id="form-login" class="caixa-login" novalidate>
                 <label for="login">Login</label>
-                <input type="text" id="login" name="login" maxlength="6" autocomplete="username" placeholder="Digite seu e-mail">
+                <input type="text" id="login" name="login" maxlength="6"
+                autocomplete="username" placeholder="6 letras">
 
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" maxlength="8" autocomplete="current-password" placeholder="Digite sua senha">
+                <input type="password" id="senha" name="senha" maxlength="8"
+                autocomplete="current-password" placeholder="8 letras">
 
                 <button type="submit">Entrar</button>
                 <p class="aviso-form" id="aviso-login" role="status"></p>
                 <p class="login-rodape">
-                    Ainda não tem conta? <a href="cadastro.html"><Cadastre-se>Clique aqui</a>
+                    Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a>
                 </p>
 
             </form>

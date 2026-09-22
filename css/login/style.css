@@ -1,3 +1,7 @@
+.cabecalho {
+    justify-content: center;
+}
+
 .secao-login {
     min-height: calc(100vh - 200px);
     display: flex;
