@@ -27,7 +27,6 @@ function fecharModalContato() {
 
 formContato.addEventListener('submit', function (evento) {
     evento.preventDefault();
-    console.log("Formulário enviado, página NÃO recarregou");
 
     const nome = document.querySelector('#nome').value.trim();
     const email = document.querySelector('#email').value.trim();
@@ -44,9 +43,7 @@ formContato.addEventListener('submit', function (evento) {
     }
 
     esconderAviso();
-    abrirModalContato('Recebemos sua mensagem, ' + nome + '! Em breve entraremos em contato', 'sucesso')
-    formContato.reset();
-
+    abrirModalContato('Recebemos sua mensagem, ' + nome + '! Em breve entraremos em contato')
     formContato.reset();
 });
 
@@ -55,6 +52,12 @@ botaoOk.addEventListener('click', fecharModalContato)
 
 modalContato.addEventListener('click', function (evento) {
     if (evento.target === modalContato){
+        fecharModalContato();
+    }
+});
+
+document.addEventListener('keydown', function (evento) {
+    if (evento.key === 'Escape') {
         fecharModalContato();
     }
 });

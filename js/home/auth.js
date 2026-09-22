@@ -1,11 +1,14 @@
 function obterSessao(){
     const bruto = localStorage.getItem('portalEventos_sessao');
 
+    if (!bruto) {          // NOVO
+        return null;
+    }
 
     try {
         return JSON.parse(bruto);
     } catch (erro) {
-        return null
+        return null;
     }
 }
 
