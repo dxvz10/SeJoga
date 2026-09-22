@@ -1,0 +1,105 @@
+.secao-login {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    background-image: linear-gradient(rgba(61, 10, 78, 0.60)), url("../../assets/backgrounds/fundo-sobre.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.secao-login h1 {
+    color: var(--branco);
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.login-subtitulo {
+    color: var(--branco);
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.caixa-login {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    max-width: 380px;
+    background-color: var(--branco);
+    padding: 32px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.caixa-login label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+.caixa-login input {
+    padding: 10px 12px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.caixa-login input:focus-visible {
+    border-color: var(--roxo);
+    outline: 2px solid var(--roxo-claro);
+}
+
+.caixa-login button {
+    margin-top: 24px;
+    background-color: var(--rosa);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.caixa-login button:hover {
+    background-color: var(--rosa-escuro);
+}
+
+.login-rodape {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    color: var(--cinza-texto);
+}
+
+.login-rodape a {
+    color: var(--roxo);
+    font-weight: bold;
+}
+
+/* O botão Entrar do cabeçalho fica "aceso" nesta página */
+.acoes-cabecalho .botao-entrar.ativo {
+    background-color: var(--branco);
+    color: var(--roxo);
+}
+
+/* ===== CELULAR ===== */
+@media (max-width: 767px) {
+    .secao-login {
+        min-height: auto;
+        padding: 32px 16px;
+    }
+
+    .secao-login h1 {
+        font-size: 24px;
+    }
+
+    .caixa-login {
+        padding: 24px;
+    }
+}

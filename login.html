@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login/style.css">
+    <title>SeJoga - Login</title>
+</head>
+<body>
+  <header class="cabecalho">
+
+        <a href="index.html" class="logo">
+            <img src="assets/logo/logo.png" alt="Logo do SeJoga">
+        </a>
+
+
+        <!-- O menu é uma LISTA de links. Parece estranho no começo,
+             mas é o padrão: um menu é literalmente uma lista de opções,
+             e leitores de tela anunciam "lista com 3 itens" pro usuário. -->
+
+        <nav class="menu">
+            <ul class="menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="calendario.html" data-precisa-login>Calendário</a></li>
+                <li><a href="cadastro-evento.html" data-precisa-login>Cadastrar Evento</a></li>
+            </ul>
+        </nav>
+
+    <div class="acoes-cabecalho">
+        <a href="cadastro.html" class="botao-cadastro">Cadastrar</a>
+        <a href="login.html" class="botao-entrar">Entrar</a>
+    </div>
+
+    </header>
+    <main>
+        <section class="secao-login">
+
+            <h1>Entrar na sua conta</h1>
+            <p class="login-subtitulo">Acesse para ver o calendário e publicar seus eventos.</p>
+
+            <form id="form-login" class="caixa-login" novalidate>
+                <label for="login">Login</label>
+                <input type="text" id="login" name="login" maxlength="6" autocomplete="username" placeholder="Digite seu e-mail">
+
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" maxlength="8" autocomplete="current-password" placeholder="Digite sua senha">
+
+                <button type="submit">Entrar</button>
+                <p class="aviso-form" id="aviso-login" role="status"></p>
+                <p class="login-rodape">
+                    Ainda não tem conta? <a href="cadastro.html"><Cadastre-se>Clique aqui</a>
+                </p>
+
+            </form>
+        </section>
+    </main>
+<footer class="rodape">
+    <div class="rodape-conteudo">
+        <div class="rodape-coluna">
+            <h3>SeJoga</h3>
+            <p>Festas, jogos e encontros perto de você. Encontre o próximo rolê sem precisar caçar em dez lugares diferentes.</p>
+        </div>
+
+        <nav class="rodape-coluna">
+            <h3>Redes Sociais</h3>
+            <ul>
+                <li>
+                    <a href="https://www.instagram.com/se.jogaaa/">
+                    <img src="img/icons/instagram.png" alt="Instagram">
+                    </a>
+                </li>
+
+                <li><a href="https://x.com/sejogaaaa">
+                    <img src="img/icons/twitter.png" alt="Twitter">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <nav class="rodape-coluna">
+            <h3>Institucional</h3>
+            <ul>
+                <li><a href="#">Termos de Uso</a></li>
+                <li><a >Política de Privacidade</a></li>
+                <li><a href="#">Fale Conosco</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="rodape-base">
+        <p>© 2026 SeJoga — Projeto acadêmico UNISUAM · Desenvolvimento de Software para Internet</p>
+    </div>
+</footer>
+</body>

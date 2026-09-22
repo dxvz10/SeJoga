@@ -14,7 +14,7 @@ function usuarioLogado() {
 }
 
 const modalConta = document.querySelector('#modal-conta');
-const fecharModalConta =  modalConta.querySelector('.modal fechar');
+const fecharModalConta =  modalConta.querySelector('.modal-fechar');
 const linksProtegidos = document.querySelectorAll('[data-precisa-login]')
 
 linksProtegidos.forEach(function (link) {
