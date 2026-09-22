@@ -124,6 +124,17 @@ body {
 .conteudo {
     min-height: calc(100vh - 170px);
     padding: 35px 5%;
+
+    /* Duas camadas de fundo. A PRIMEIRA da lista fica POR CIMA:
+       o gradiente escurece a foto para o texto branco aparecer.
+       Mesmo padrão do "Sobre Nós" e do "Contato" na home. */
+    background-image: linear-gradient(rgba(61, 10, 78, 0.72), rgba(61, 10, 78, 0.82)),
+                      url("../../assets/backgrounds/background-calendario.jpg");
+    background-size: cover;
+    background-position: center;
+
+    /* fixed = a foto não rola junto com a página. */
+    background-attachment: fixed;
 }
 
 
@@ -136,12 +147,12 @@ body {
 
 .titulo h1 {
     font-size: 32px;
-    color: #42104f;
+    color: var(--branco);
     margin-bottom: 8px;
 }
 
 .titulo p {
-    color: #666;
+    color: var(--branco);
     font-size: 16px;
 }
 
@@ -225,7 +236,19 @@ body {
     border-bottom: 1px solid #ddd;
     background-color: white;
     font-size: 16px;
-    transition: 0.2s;
+
+    /* position + z-index: sem isso o quadradinho ampliado passa
+       POR BAIXO dos vizinhos, porque quem não tem z-index é
+       pintado na ordem do HTML. */
+    position: relative;
+    z-index: 0;
+
+    /* Duração de cada propriedade. O atraso NÃO entra aqui:
+       este é o caminho de VOLTA, quando o mouse sai, e a volta
+       tem que ser imediata. */
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background-color 0.25s ease;
 }
 
 
@@ -234,6 +257,184 @@ body {
 .dia:hover {
     background-color: #f5eafa;
     cursor: pointer;
+
+    /* transition-delay declarado AQUI vale só para a ida.
+       O mouse precisa ficar parado 350ms antes de começar,
+       então passar o mouse de raspão não dispara nada. */
+    transition-delay: 0.35s;
+
+    transform: scale(1.07);
+    box-shadow: 0 8px 24px rgba(61, 10, 78, 0.28);
+    z-index: 2;
+}
+
+/* Quem pediu menos movimento no sistema operacional recebe só
+   a troca de cor, sem o zoom. */
+/* ===== TODOS OS EVENTOS: BUSCA E FILTROS ===== */
+
+/* Mesma caixa branca do calendário: o fundo continua aparecendo
+   nas laterais, em vez de cobrir a tela toda. */
+.secao-busca {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: var(--branco);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.secao-busca h2 {
+    color: var(--roxo-escuro);
+    font-size: 25px;
+    margin-bottom: 18px;
+}
+
+.busca-topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.busca-topo label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.busca-topo input {
+    flex: 1 1 260px;          /* cresce, mas nunca abaixo de 260px */
+    padding: 10px 12px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.busca-topo input:focus-visible {
+    border-color: var(--roxo);
+    outline: 2px solid var(--roxo-claro);
+}
+
+.contador-resultados {
+    font-size: 14px;
+    color: var(--cinza-texto);
+}
+
+/* A lista ocupa a coluna 1 e os filtros a 2 — independente da
+   ordem no HTML. No HTML os filtros vêm primeiro porque, no
+   celular, é lá que eles devem aparecer. */
+.busca-layout {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 24px;
+    align-items: start;
+}
+
+.painel-filtros {
+    /* grid-row: 1 junto com grid-column é essencial. Só com a
+       coluna, o navegador coloca a lista na LINHA DE BAIXO:
+       ele preenche na ordem do HTML e não volta atrás. */
+    grid-column: 2;
+    grid-row: 1;
+    padding: 16px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 8px;
+    background-color: var(--cinza-claro);
+}
+
+.resultados-busca {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.filtros-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.filtros-topo h3 {
+    color: var(--roxo-escuro);
+    font-size: 16px;
+}
+
+#limpar-filtros {
+    border: none;
+    background: none;
+    color: var(--roxo);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* fieldset vem com borda e margens próprias do navegador. */
+.grupo-filtro {
+    border: none;
+    padding: 0;
+    margin: 0 0 16px;
+}
+
+.grupo-filtro legend {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--roxo);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.grupo-filtro label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.grupo-filtro input[type="checkbox"] {
+    accent-color: var(--roxo);   /* pinta a caixa marcada com a cor da marca */
+    cursor: pointer;
+}
+
+.faixa-preco {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 6px 8px;
+}
+
+.faixa-preco label {
+    font-size: 14px;
+}
+
+.faixa-preco input {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.sem-resultado {
+    grid-column: 1 / -1;      /* ocupa a largura toda da grade */
+    padding: 28px 12px;
+    text-align: center;
+    color: var(--cinza-texto);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .dia:hover {
+        transform: none;
+    }
 }
 
 
@@ -275,7 +476,7 @@ body {
 }
 
 .eventos>h2 {
-    color: #42104f;
+    color: var(--branco);
     margin-bottom: 20px;
     font-size: 25px;
 }
@@ -676,6 +877,27 @@ body {
 
 
 @media (max-width: 800px) {
+    /* Uma coluna só: os filtros sobem para cima da lista. */
+    .busca-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .painel-filtros {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .resultados-busca {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    /* background-attachment: fixed engasga em celular —
+       alguns navegadores nem suportam. */
+    .conteudo {
+        background-attachment: scroll;
+    }
+
     .cabecalho {
         flex-direction: column;
         height: auto;

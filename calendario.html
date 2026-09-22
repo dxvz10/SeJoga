@@ -56,13 +56,10 @@
         <!-- Título da página -->
 
         <section class="titulo">
-
             <h1>Calendário de Eventos</h1>
-
             <p>
                 Encontre festas, jogos, encontros e eventos perto de você.
             </p>
-
         </section>
 
 
@@ -111,6 +108,73 @@
 
             <div class="cards-eventos" id="cards-eventos">
                 <!-- Os cards vêm da lista única do js/eventos.js. -->
+            </div>
+
+        </section>
+
+
+        <!-- TODOS OS EVENTOS: busca + filtros -->
+
+        <section class="secao-busca">
+
+            <h2>Todos os eventos</h2>
+
+            <div class="busca-topo">
+                <label for="busca">Buscar</label>
+                <input type="search" id="busca" placeholder="Nome, local ou descrição…">
+                <p class="contador-resultados" id="contador" role="status"></p>
+            </div>
+
+            <div class="busca-layout">
+
+                <!-- fieldset + legend é a marcação correta para agrupar
+                     controles de formulário: leitores de tela anunciam
+                     "Status, grupo" antes de cada opção. -->
+                <aside class="painel-filtros">
+
+                    <div class="filtros-topo">
+                        <h3>Filtros</h3>
+                        <button type="button" id="limpar-filtros">Limpar</button>
+                    </div>
+
+                    <fieldset class="grupo-filtro">
+                        <legend>Status</legend>
+                        <label><input type="checkbox" name="status" value="disponivel"> Disponível</label>
+                        <label><input type="checkbox" name="status" value="perto"> Perto do início</label>
+                        <label><input type="checkbox" name="status" value="esgotado"> Esgotado ou cancelado</label>
+                        <label><input type="checkbox" name="status" value="realizado"> Já realizado</label>
+                    </fieldset>
+
+                    <fieldset class="grupo-filtro">
+                        <legend>Tipo de evento</legend>
+                        <label><input type="checkbox" name="categoria" value="futebol"> Futebol</label>
+                        <label><input type="checkbox" name="categoria" value="basquete"> Basquete</label>
+                        <label><input type="checkbox" name="categoria" value="fantasia"> Fantasia</label>
+                        <label><input type="checkbox" name="categoria" value="e-sport"> E-sports</label>
+                        <label><input type="checkbox" name="categoria" value="festa"> Festa</label>
+                    </fieldset>
+
+                    <fieldset class="grupo-filtro">
+                        <legend>Preço</legend>
+                        <div class="faixa-preco">
+                            <label for="preco-min">Mín</label>
+                            <input type="number" id="preco-min" min="0" step="10" placeholder="0">
+                            <label for="preco-max">Máx</label>
+                            <input type="number" id="preco-max" min="0" step="10" placeholder="999">
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="grupo-filtro">
+                        <legend>Região</legend>
+                        <!-- As opções vêm das regiões que realmente existem
+                             nos eventos, montadas pelo js/calendario.js. -->
+                        <div id="filtro-regioes"></div>
+                    </fieldset>
+
+                </aside>
+
+                <div class="resultados-busca" id="resultados-busca"></div>
+
             </div>
 
         </section>
@@ -170,8 +234,6 @@
         </div>
     </div>
 </div>
-<!-- A ordem importa: auth.js define obterSessao(),
-     o eventos.js define a lista, e o calendario.js usa os dois. -->
 <script src="js/home/auth.js"></script>
 <script src="js/eventos.js"></script>
 <script src="js/calendario.js"></script>

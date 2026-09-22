@@ -201,8 +201,9 @@ listaCards.addEventListener('click', function (evento) {
     const ficouNaAgenda = alternarMeuEvento(botao.dataset.id);
     aplicarTextoDoBotao(botao, ficouNaAgenda);
 
-    // A grade precisa refletir a mudança na hora.
+    // A grade e a lista de busca precisam refletir a mudança.
     desenharMes();
+    aplicarFiltros();
 });
 
 
@@ -212,3 +213,152 @@ listaCards.addEventListener('click', function (evento) {
 
 desenharMes();
 renderizarCards();
+
+
+/* =============================================================
+   TODOS OS EVENTOS — busca e filtros
+
+   A regra de filtragem em si mora no eventos.js (filtrarEventos).
+   Aqui só lemos o que está na tela, chamamos a função e
+   desenhamos o resultado.
+   ============================================================= */
+
+const campoBusca = document.querySelector('#busca');
+const resultados = document.querySelector('#resultados-busca');
+const contador = document.querySelector('#contador');
+const precoMin = document.querySelector('#preco-min');
+const precoMax = document.querySelector('#preco-max');
+const botaoLimpar = document.querySelector('#limpar-filtros');
+const caixaRegioes = document.querySelector('#filtro-regioes');
+
+let esperandoDigitar;
+
+
+/* As regiões não estão escritas no HTML: saem dos próprios
+   eventos. Quando o cadastro criar um evento numa região nova,
+   o filtro aparece sozinho. */
+function montarFiltroDeRegioes() {
+    listarRegioes().forEach(function (regiao) {
+        const rotulo = document.createElement('label');
+
+        const caixa = document.createElement('input');
+        caixa.type = 'checkbox';
+        caixa.name = 'regiao';
+        caixa.value = regiao;
+
+        rotulo.appendChild(caixa);
+        rotulo.appendChild(document.createTextNode(' ' + regiao));
+        caixaRegioes.appendChild(rotulo);
+    });
+}
+
+
+/* Lê as caixas marcadas de um grupo e devolve os valores.
+   O seletor :checked pega só as marcadas. */
+function marcados(nome) {
+    const caixas = document.querySelectorAll('input[name="' + nome + '"]:checked');
+    const valores = [];
+
+    caixas.forEach(function (caixa) {
+        valores.push(caixa.value);
+    });
+
+    return valores;
+}
+
+
+/* Campo de número vazio devolve "". Number('') daria 0, o que
+   filtraria errado — por isso devolvemos null quando vazio. */
+function numeroOuNulo(campo) {
+    const texto = campo.value.trim();
+
+    if (texto === '') {
+        return null;
+    }
+
+    return Number(texto);
+}
+
+
+function aplicarFiltros() {
+    const criterios = {
+        texto: campoBusca.value,
+        status: marcados('status'),
+        categorias: marcados('categoria'),
+        regioes: marcados('regiao'),
+        precoMin: numeroOuNulo(precoMin),
+        precoMax: numeroOuNulo(precoMax)
+    };
+
+    const encontrados = filtrarEventos(obterEventos(), criterios);
+
+    resultados.textContent = '';
+
+    if (encontrados.length === 0) {
+        const aviso = novoElemento('p', 'sem-resultado',
+            'Nenhum evento encontrado. Tente mudar a busca ou limpar os filtros.');
+        resultados.appendChild(aviso);
+    } else {
+        encontrados.forEach(function (evento) {
+            resultados.appendChild(montarCard(evento));
+        });
+    }
+
+    // Concordância: "1 evento" e não "1 eventos".
+    const plural = encontrados.length === 1 ? ' evento encontrado' : ' eventos encontrados';
+    contador.textContent = encontrados.length + plural;
+}
+
+
+/* O evento 'input' dispara a cada tecla. Recalcular em todas
+   seria desperdício, então esperamos 250ms de teclado parado —
+   a mesma técnica de debounce usada no carrossel. */
+campoBusca.addEventListener('input', function () {
+    clearTimeout(esperandoDigitar);
+    esperandoDigitar = setTimeout(aplicarFiltros, 250);
+});
+
+/* Nas caixas e nos números, um listener só no painel inteiro
+   (delegação) cobre todos os controles de uma vez. */
+document.querySelector('.painel-filtros').addEventListener('change', aplicarFiltros);
+precoMin.addEventListener('input', aplicarFiltros);
+precoMax.addEventListener('input', aplicarFiltros);
+
+botaoLimpar.addEventListener('click', function () {
+    campoBusca.value = '';
+    precoMin.value = '';
+    precoMax.value = '';
+
+    document.querySelectorAll('.painel-filtros input[type="checkbox"]').forEach(function (caixa) {
+        caixa.checked = false;
+    });
+
+    aplicarFiltros();
+});
+
+
+/* O botão "adicionar ao calendário" também existe nos cards da
+   busca, então a lista de resultados precisa do mesmo tratamento
+   que a de destaques. */
+resultados.addEventListener('click', function (evento) {
+    const botao = evento.target.closest('.botao-agenda');
+
+    if (!botao) {
+        return;
+    }
+
+    if (!usuarioLogado()) {
+        modalConta.classList.add('aberto');
+        return;
+    }
+
+    const ficouNaAgenda = alternarMeuEvento(botao.dataset.id);
+    aplicarTextoDoBotao(botao, ficouNaAgenda);
+
+    desenharMes();
+    renderizarCards();
+});
+
+
+montarFiltroDeRegioes();
+aplicarFiltros();

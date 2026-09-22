@@ -86,7 +86,6 @@
     font-weight: bold;
 }
 
-/* O botão Entrar do cabeçalho fica "aceso" nesta página */
 .acoes-cabecalho .botao-entrar.ativo {
     background-color: var(--branco);
     color: var(--roxo);
