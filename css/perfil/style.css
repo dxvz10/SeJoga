@@ -1,0 +1,152 @@
+/* =========================================================
+   PERFIL — estilos exclusivos da perfil.html
+
+   Reaproveita os campos do cadastro (css/cadastro/style.css) e
+   os cards de evento (css/eventos/style.css). Aqui fica só o que
+   é do perfil: as duas colunas e o cartão com a foto.
+   ========================================================= */
+
+/* O css/cadastro/style.css centraliza a logo no cabeçalho (a tela
+   de cadastro só tem a logo). Aqui o cabeçalho é o completo. */
+.cabecalho {
+    justify-content: space-between;
+}
+
+/* Dados à esquerda (largo), senha à direita (estreito). */
+.perfil-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 24px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.caixa-perfil {
+    background-color: var(--branco);
+    border-radius: 10px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.caixa-perfil > h2 {
+    color: var(--roxo-escuro);
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+/* O formulário do perfil usa as regras do .caixa-cadastro, mas
+   sem a caixa branca própria: ele já está dentro de uma. */
+.formulario-perfil {
+    max-width: none;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+}
+
+
+/* ===== CARTÃO COM A FOTO ===== */
+
+.perfil-cartao {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 22px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--cinza-borda);
+}
+
+.perfil-identidade {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.perfil-identidade strong {
+    color: var(--roxo-escuro);
+    font-size: 20px;
+}
+
+.perfil-identidade > span {
+    color: var(--cinza-texto);
+}
+
+.perfil-foto-acoes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.perfil-foto-acoes:has(input:focus-visible) .botao-foto {
+    outline: 2px solid var(--roxo);
+    outline-offset: 2px;
+}
+
+/* Campo que só mostra (CPF): cinza, para ficar claro que não edita. */
+.formulario-perfil input[readonly] {
+    background-color: var(--cinza-claro);
+    color: var(--cinza-texto);
+    cursor: not-allowed;
+}
+
+
+/* ===== AGENDA ===== */
+
+.agenda-subtitulo {
+    color: var(--branco);
+    font-size: 17px;
+    margin: 8px 0 14px;
+}
+
+#agenda-passados .agenda-subtitulo {
+    margin-top: 32px;
+}
+
+/* Eventos que já passaram: um pouco apagados. */
+.cards-passados .card {
+    opacity: 0.75;
+}
+
+.agenda-vazia {
+    padding: 28px;
+    border-radius: 10px;
+    text-align: center;
+    color: var(--branco);
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.agenda-vazia p {
+    margin-bottom: 14px;
+}
+
+.agenda-vazia .botao-cadastro {
+    display: inline-block;
+}
+
+
+/* ===== CELULAR E TABLET ===== */
+
+@media (max-width: 900px) {
+    /* Uma coluna: a senha desce para baixo dos dados. */
+    .perfil-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .caixa-perfil {
+        padding: 18px;
+    }
+
+    .perfil-cartao {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .perfil-foto-acoes {
+        justify-content: center;
+    }
+}

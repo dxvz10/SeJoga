@@ -1,0 +1,381 @@
+/* =========================================================
+   EVENTOS — o que o calendário, a página Eventos e o perfil
+   têm em comum: o fundo da página, os cards de evento, o botão
+   "Adicionar ao calendário" e a busca com filtros.
+
+   Carregado DEPOIS do css/style.css e ANTES do CSS específico
+   de cada página.
+   ========================================================= */
+
+
+/* ===== FUNDO DA PÁGINA ===== */
+
+.conteudo {
+    min-height: calc(100vh - 170px);
+    padding: 35px 5%;
+
+    /* Duas camadas de fundo. A PRIMEIRA da lista fica POR CIMA:
+       o gradiente escurece a foto para o texto branco aparecer. */
+    background-image: linear-gradient(rgba(61, 10, 78, 0.72), rgba(61, 10, 78, 0.82)),
+                      url("../../assets/backgrounds/background-calendario.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;     /* a foto não rola junto */
+}
+
+/* Título da página, em cima do fundo escuro. Chamava-se .titulo,
+   mas esse nome já é usado no título dos cards da home. */
+.titulo-pagina {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo-pagina h1 {
+    font-size: 32px;
+    color: var(--branco);
+    margin-bottom: 8px;
+}
+
+.titulo-pagina p {
+    color: var(--branco);
+    font-size: 16px;
+}
+
+
+/* ===== SEÇÃO DE CARDS ===== */
+
+.eventos {
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.eventos > h2 {
+    color: var(--branco);
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+/* 300px: 3 colunas nos 1100px da seção — os 6 destaques formam
+   duas linhas certinhas de 3. Em telas menores, o auto-fill vai
+   tirando colunas sozinho.
+
+   min(300px, 100%): se a tela tiver MENOS de 300px livres (celular
+   com o texto em 130%), a coluna encolhe para caber, em vez de
+   estourar a tela. */
+.cards-eventos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 20px;
+}
+
+
+/* ===== CARD ===== */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--branco);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card h3 {
+    margin: 8px 0 15px;
+    color: var(--roxo-escuro);
+    font-size: 21px;
+}
+
+.card p {
+    margin-bottom: 7px;
+    color: var(--cinza-texto);
+}
+
+/* margin-top: auto empurra o rodapé do card para BAIXO. Com cards
+   de alturas diferentes na mesma linha, os preços ficam alinhados. */
+.card .rodape-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+}
+
+.card .preco {
+    font-weight: bold;
+    color: var(--roxo);
+}
+
+
+/* ===== BOTÃO "ADICIONAR AO CALENDÁRIO" ===== */
+
+.botao-agenda {
+    width: 100%;
+    margin-top: 12px;
+    padding: 9px 12px;
+    border: 1px solid var(--roxo);
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--roxo);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao-agenda:hover {
+    background-color: var(--roxo-claro);
+}
+
+/* Depois de adicionado, preenchido: dá para ver de longe quais
+   eventos já estão na agenda. */
+.botao-agenda.na-agenda {
+    background-color: var(--roxo);
+    color: var(--branco);
+}
+
+.botao-agenda.na-agenda:hover {
+    background-color: var(--roxo-escuro);
+}
+
+
+/* ===== CONVITE PARA VISITANTES ===== */
+
+.cta-visitante {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    padding: 28px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--branco);
+}
+
+.cta-visitante h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.cta-visitante p {
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+.cta-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+
+/* ===== BUSCA E FILTROS ===== */
+
+/* Caixa branca: o fundo continua aparecendo nas laterais. */
+.secao-busca {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: var(--branco);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.secao-busca h2 {
+    color: var(--roxo-escuro);
+    font-size: 25px;
+    margin-bottom: 18px;
+}
+
+.busca-topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.busca-topo label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.busca-topo input {
+    flex: 1 1 260px;          /* cresce, mas nunca abaixo de 260px */
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    background-color: var(--branco);
+    color: var(--roxo-escuro);
+}
+
+.busca-topo input:focus-visible {
+    border-color: var(--roxo);
+    outline: 2px solid var(--roxo-claro);
+}
+
+.contador-resultados {
+    font-size: 14px;
+    color: var(--cinza-texto);
+}
+
+/* A lista na coluna 1 e os filtros na 2, independente da ordem no
+   HTML. grid-row: 1 é essencial: só com a coluna, o navegador
+   jogaria a lista para a linha de baixo (ele preenche na ordem do
+   HTML e não volta atrás). */
+.busca-layout {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 24px;
+    align-items: start;
+}
+
+.painel-filtros {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 16px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 8px;
+    background-color: var(--cinza-claro);
+}
+
+.resultados-busca {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 16px;
+}
+
+.filtros-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.filtros-topo h3 {
+    color: var(--roxo-escuro);
+    font-size: 16px;
+}
+
+.limpar-filtros {
+    border: none;
+    background: none;
+    color: var(--roxo);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.grupo-filtro {
+    border: none;
+    padding: 0;
+    margin: 0 0 16px;
+}
+
+.grupo-filtro legend {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--roxo);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.grupo-filtro label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.grupo-filtro input[type="checkbox"] {
+    accent-color: var(--roxo);    /* a caixa marcada na cor da marca */
+    cursor: pointer;
+}
+
+.faixa-preco {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 6px 8px;
+}
+
+.faixa-preco label {
+    font-size: 14px;
+}
+
+.faixa-preco input {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    background-color: var(--branco);
+    color: var(--roxo-escuro);
+}
+
+.sem-resultado {
+    grid-column: 1 / -1;       /* ocupa a largura toda da grade */
+    padding: 28px 12px;
+    text-align: center;
+    color: var(--cinza-texto);
+}
+
+
+/* ===== CELULAR ===== */
+
+@media (max-width: 800px) {
+    /* fixed engasga em celular; alguns navegadores nem suportam. */
+    .conteudo {
+        background-attachment: scroll;
+    }
+
+    /* Uma coluna só: os filtros sobem para cima da lista. */
+    .busca-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .painel-filtros {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .resultados-busca {
+        grid-column: 1;
+        grid-row: 2;
+    }
+}
+
+@media (max-width: 500px) {
+    .conteudo {
+        padding: 20px 10px;
+    }
+
+    .titulo-pagina h1 {
+        font-size: 26px;
+    }
+
+    .secao-busca {
+        padding: 16px;
+    }
+
+    .cta-visitante {
+        padding: 20px 16px;
+    }
+}

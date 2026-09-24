@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<!-- data-pagina="visitante": quem já está logado é mandado para a home -->
+<html lang="pt-BR" data-pagina="visitante">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login/style.css">
     <link rel="icon" href="assets/logo/favicon-sj.png" type="image/png">
+    <!-- tema.js no <head>: aplica o tema escuro antes da página aparecer -->
+    <script src="js/tema.js"></script>
     <title>SeJoga - Login</title>
 </head>
 <body>
@@ -25,11 +28,11 @@
             <form id="form-login" class="caixa-login" novalidate>
                 <label for="login">Login</label>
                 <input type="text" id="login" name="login" maxlength="6"
-                autocomplete="username" placeholder="6 letras">
+                autocomplete="username" placeholder="6 letras" aria-describedby="aviso-login">
 
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" name="senha" maxlength="8"
-                autocomplete="current-password" placeholder="8 letras">
+                autocomplete="current-password" placeholder="8 letras" aria-describedby="aviso-login">
 
                 <button type="submit">Entrar</button>
                 <p class="aviso-form" id="aviso-login" role="status"></p>
@@ -77,4 +80,11 @@
         <p>© 2026 SeJoga — Projeto acadêmico UNISUAM · Desenvolvimento de Software para Internet</p>
     </div>
 </footer>
+
+<!-- storage → ui → validacoes → auth → login: cada um usa o anterior -->
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/validacoes.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/login.js"></script>
 </body>

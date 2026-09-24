@@ -5,78 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="assets/logo/favicon-sj.png" type="image/png">
+    <!-- tema.js no <head>: aplica o tema escuro antes da página aparecer -->
+    <script src="js/tema.js"></script>
     <title>SeJoga</title>
 </head>
 <body>
-  <!-- CABEÇALHO — vai se repetir em todas as páginas do site -->
-   <header class="cabecalho">
 
-        <a href="index.html" class="logo">
-            <img src="assets/logo/logo.png" alt="Logo do SeJoga">
-        </a>
+<!-- CABEÇALHO — o mesmo em todas as páginas -->
+<header class="cabecalho">
 
-        <nav class="menu">
-            <ul class="menu">
-                <li><a href="index.html" class="ativo">Início</a></li>
-                <li><a href="calendario.html" data-precisa-login>Calendário</a></li>
-                <li><a href="cadastro-evento.html" data-precisa-login>Cadastrar Evento</a></li>
-            </ul>
-        </nav>
+    <a href="index.html" class="logo">
+        <img src="assets/logo/logo.png" alt="Logo do SeJoga">
+    </a>
 
+    <nav class="menu" aria-label="Principal">
+        <ul class="menu">
+            <li><a href="index.html" class="ativo" aria-current="page">Início</a></li>
+            <li><a href="calendario.html">Calendário</a></li>
+            <li><a href="eventos.html" data-precisa-login>Eventos</a></li>
+            <li><a href="cadastro-evento.html" data-precisa-login>Cadastrar Evento</a></li>
+        </ul>
+    </nav>
+
+    <!-- Visitante: estes dois botões. Logado: o cabecalho.js esconde
+         os dois e monta o sininho e o menu do usuário no lugar. -->
     <div class="acoes-cabecalho">
-        <!-- Os dois estados do cabeçalho moram aqui. O atributo hidden
-             (do próprio HTML, não precisa de CSS) esconde um dos pares;
-             o auth.js decide qual, lendo a sessão no localStorage. -->
         <a href="cadastro.html" class="botao-cadastro" data-sessao="deslogado">Cadastrar</a>
         <a href="login.html" class="botao-entrar" data-sessao="deslogado">Entrar</a>
-
-        <span class="usuario-info" data-sessao="logado" hidden>
-            <span class="usuario-avatar" id="usuario-avatar"></span>
-            <span class="usuario-nome"></span>
-        </span>
-        <button type="button" class="botao-sair" id="botao-sair" data-sessao="logado" hidden>Sair</button>
     </div>
 
-    </header>
-<main>
-    <section class="secao-sobre">
-        <h2>Sobre Nós</h2>
-        <p>O SeJoga é a plataforma definitiva para quem quer transformar o tempo livre em experiências inesquecíveis, conectando você de forma simples e rápida a festas, jogos, encontros e eventos de todos os tipos.</p>
-        <p>Mais do que apenas listar o que está rolando por aí, nossa ferramenta foi desenhada para centralizar e otimizar a sua jornada de entretenimento, oferecendo funcionalidades pensadas para o seu dia a dia:</p>
-        <ul>
-            <li tabindex="0">
-                <strong>Descoberta Inteligente de Eventos</strong>
-                <span>Navegue por um catálogo completo e atualizado em tempo real. Filtre as opções por categoria (como festas, campeonatos ou encontros), localização e data para encontrar exatamente o que combina com o seu estilo.</span>
-            </li>
-            <li tabindex="0">
-                <strong>Informações Claras e Centralizadas</strong>
-                <span>Diga adeus à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições.</span>
-            </li>
-            <li tabindex="0">
-                <strong>Conexão com a Comunidade</strong>
-                <span>Encontre eventos que conversam com os seus interesses e descubra o que o seu grupo ou a sua região estão movimentando.</span>
-            </li>
-        </ul>
-        <p>Seja para planejar o fim de semana com antecedência ou para encontrar um programa de última hora, o SeJoga existe para descomplicar a sua rotina e aproximar você dos melhores momentos. Explore, decida e... SeJoga!</p>
-    </section>
+</header>
 
+<main>
+
+    <!-- 1. EVENTOS — agora a primeira coisa que se vê -->
     <section class="secao-eventos">
 
-    <div class="titulo-secao">
-        <h1>Alguns dos nossos eventos!</h1>
-        <p class="subtitulo">Festas, jogos e encontros perto de você</p>
-    </div>
+        <div class="titulo-secao">
+            <h1>Alguns dos nossos eventos!</h1>
+            <p class="subtitulo">Festas, jogos e encontros perto de você</p>
+        </div>
 
         <div class="carrossel-eventos">
-            <button class="seta seta-esquerda" aria-label="Evento Anterior">
+            <button class="seta seta-esquerda" aria-label="Evento anterior">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
 
-            <div class="trilho-eventos">
-            
-            </div>
+            <!-- Os cards são montados pelo js/home/destaques.js,
+                 a partir da lista única do js/eventos.js. -->
+            <div class="trilho-eventos"></div>
 
             <button class="seta seta-direita" aria-label="Próximo evento">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -86,6 +65,95 @@
         </div>
     </section>
 
+
+    <!-- 2. CATEGORIAS — cada cartão abre a página Eventos já filtrada.
+         data-precisa-login: visitante recebe o convite de login e,
+         depois de entrar, cai direto na categoria que escolheu. -->
+    <section class="secao-categorias">
+
+        <div class="titulo-secao">
+            <h2>Explore por categoria</h2>
+            <p class="subtitulo">Escolha o seu tipo de rolê</p>
+        </div>
+
+        <ul class="grade-categorias">
+            <li>
+                <a href="eventos.html?categoria=futebol" class="cartao-categoria" data-precisa-login>
+                    <span class="icone-categoria" aria-hidden="true">⚽</span>
+                    <strong>Futebol</strong>
+                    <span class="qtd-categoria" data-contar-categoria="futebol"></span>
+                </a>
+            </li>
+            <li>
+                <a href="eventos.html?categoria=basquete" class="cartao-categoria" data-precisa-login>
+                    <span class="icone-categoria" aria-hidden="true">🏀</span>
+                    <strong>Basquete</strong>
+                    <span class="qtd-categoria" data-contar-categoria="basquete"></span>
+                </a>
+            </li>
+            <li>
+                <a href="eventos.html?categoria=e-sport" class="cartao-categoria" data-precisa-login>
+                    <span class="icone-categoria" aria-hidden="true">🎮</span>
+                    <strong>E-sports</strong>
+                    <span class="qtd-categoria" data-contar-categoria="e-sport"></span>
+                </a>
+            </li>
+            <li>
+                <a href="eventos.html?categoria=festa" class="cartao-categoria" data-precisa-login>
+                    <span class="icone-categoria" aria-hidden="true">🎉</span>
+                    <strong>Festa</strong>
+                    <span class="qtd-categoria" data-contar-categoria="festa"></span>
+                </a>
+            </li>
+            <li>
+                <a href="eventos.html?categoria=fantasia" class="cartao-categoria" data-precisa-login>
+                    <span class="icone-categoria" aria-hidden="true">🎭</span>
+                    <strong>Fantasia</strong>
+                    <span class="qtd-categoria" data-contar-categoria="fantasia"></span>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+
+    <!-- 3. SOBRE NÓS — texto à esquerda, imagens à direita -->
+    <section class="secao-sobre">
+        <div class="sobre-conteudo">
+
+            <div class="sobre-texto">
+                <h2>Sobre Nós</h2>
+                <p>O SeJoga é a plataforma definitiva para quem quer transformar o tempo livre em experiências inesquecíveis, conectando você de forma simples e rápida a festas, jogos, encontros e eventos de todos os tipos.</p>
+                <p>Mais do que apenas listar o que está rolando por aí, nossa ferramenta foi desenhada para centralizar e otimizar a sua jornada de entretenimento, oferecendo funcionalidades pensadas para o seu dia a dia:</p>
+                <ul>
+                    <li tabindex="0">
+                        <strong>Descoberta Inteligente de Eventos</strong>
+                        <span>Navegue por um catálogo completo e atualizado em tempo real. Filtre as opções por categoria (como festas, campeonatos ou encontros), localização e data para encontrar exatamente o que combina com o seu estilo.</span>
+                    </li>
+                    <li tabindex="0">
+                        <strong>Informações Claras e Centralizadas</strong>
+                        <span>Diga adeus à maratona de buscas em diferentes redes sociais. Reunimos em um só lugar tudo o que você precisa saber: horários, locais, descrições detalhadas, atrações e links diretos para ingressos ou inscrições.</span>
+                    </li>
+                    <li tabindex="0">
+                        <strong>Conexão com a Comunidade</strong>
+                        <span>Encontre eventos que conversam com os seus interesses e descubra o que o seu grupo ou a sua região estão movimentando.</span>
+                    </li>
+                </ul>
+                <p>Seja para planejar o fim de semana com antecedência ou para encontrar um programa de última hora, o SeJoga existe para descomplicar a sua rotina e aproximar você dos melhores momentos. Explore, decida e... SeJoga!</p>
+            </div>
+
+            <!-- ESPAÇO DAS IMAGENS. Enquanto estiver vazio, o CSS desenha
+                 uma moldura tracejada (seletor :empty). Para usar, coloque
+                 as imagens aqui dentro, por exemplo:
+                 <img src="assets/sobre/sobre-1.png" alt="Descreva a imagem">
+                 A moldura some sozinha. Atenção: para o :empty funcionar,
+                 não pode haver NADA entre as tags, nem espaço. -->
+            <div class="sobre-midia"></div>
+
+        </div>
+    </section>
+
+
+    <!-- 4. CONTATO -->
     <section class="secao-contato">
         <h2>Faça seu contato!</h2>
         <p>Tem alguma dúvida, sugestão ou quer compartilhar uma experiência? Entre em contato conosco!</p>
@@ -104,6 +172,7 @@
         </form>
     </section>
 </main>
+
 <footer class="rodape">
     <div class="rodape-conteudo">
         <div class="rodape-coluna">
@@ -116,12 +185,12 @@
             <ul>
                 <li>
                     <a href="https://www.instagram.com/se.jogaaa/">
-                    <img src="img/icons/instagram.png" alt="Instagram">
+                        <img src="img/icons/instagram.png" alt="Instagram">
                     </a>
                 </li>
-
-                <li><a href="https://x.com/sejogaaaa">
-                    <img src="img/icons/twitter.png" alt="Twitter">
+                <li>
+                    <a href="https://x.com/sejogaaaa">
+                        <img src="img/icons/twitter.png" alt="Twitter">
                     </a>
                 </li>
             </ul>
@@ -131,7 +200,7 @@
             <h3>Institucional</h3>
             <ul>
                 <li><a href="#">Termos de Uso</a></li>
-                <li><a >Política de Privacidade</a></li>
+                <li><a>Política de Privacidade</a></li>
                 <li><a href="#">Fale Conosco</a></li>
             </ul>
         </nav>
@@ -142,35 +211,28 @@
     </div>
 </footer>
 
+<!-- Confirmação do formulário de contato. O convite de login
+     (#modal-conta) não precisa estar aqui: o auth.js cria sozinho. -->
 <div class="modal" id="modal-contato">
-    <div class="modal-caixa">
+    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-contato-titulo">
         <button type="button" class="modal-fechar" aria-label="Fechar">&times;</button>
-        <h2>Mensagem enviada!</h2>
+        <h2 id="modal-contato-titulo">Mensagem enviada!</h2>
         <p id="modal-contato-texto"></p>
 
         <div class="modal-acoes">
-            <button type="button" class="botao-cadastro modal-ok">OK</button>
+            <!-- data-fechar-modal: o ui.js fecha o modal ao clicar -->
+            <button type="button" class="botao-cadastro" data-fechar-modal>OK</button>
         </div>
     </div>
 </div>
 
-<div class="modal" id="modal-conta">
-    <div class="modal-caixa">
-        <button type="button" class="modal-fechar" aria-label="Fechar">&times;</button>
-        <h2>Bem-vindo ao SeJoga!</h2>
-        <p>Para acessar todas as funcionalidades, faça login ou cadastre-se.</p>
-
-        <div class="modal-acoes">
-            <a href="login.html" class="botao-entrar">Entrar</a>
-            <a href="cadastro.html" class="botao-cadastro">Cadastrar</a>
-        </div>
-    </div>
-</div>
-
-<!-- A ordem importa: auth.js define obterSessao(), que o eventos.js usa;
-     o destaques.js monta os cards que o carrossel.js precisa encontrar. -->
-<script src="js/home/auth.js"></script>
+<!-- A ordem importa: cada arquivo usa funções dos anteriores.
+     O destaques.js monta os cards que o carrossel.js precisa encontrar. -->
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/eventos.js"></script>
+<script src="js/cabecalho.js"></script>
 <script src="js/home/destaques.js"></script>
 <script src="js/home/carrossel.js"></script>
 <script src="js/home/contato.js"></script>

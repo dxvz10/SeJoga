@@ -1,3 +1,9 @@
+/* =========================================================
+   CADASTRO — estilos exclusivos da cadastro.html
+   Carregado DEPOIS do style.css: herda cores, cabeçalho,
+   rodapé e os estilos de campo com erro (.erro-campo).
+   ========================================================= */
+
 .cabecalho {
     justify-content: center;
 }
@@ -10,7 +16,12 @@
     justify-content: center;
     padding: 48px 24px;
     text-align: center;
-    background-image: linear-gradient(rgba(61, 10, 78, 0.60)), url("../../assets/backgrounds/fundo-sobre.jpg");
+
+    /* Um gradiente precisa de PELO MENOS duas cores. Com uma só,
+       a declaração inteira é inválida e o navegador descarta tudo
+       — inclusive a foto de fundo. */
+    background-image: linear-gradient(rgba(61, 10, 78, 0.60), rgba(61, 10, 78, 0.75)),
+                      url("../../assets/backgrounds/fundo-sobre.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -27,25 +38,53 @@
     line-height: 1.6;
 }
 
+/* Mais largo que o login: agora são quatro grupos de campos. */
 .caixa-cadastro {
     display: flex;
     flex-direction: column;
     gap: 6px;
     width: 100%;
-    max-width: 380px;
+    max-width: 560px;
     background-color: var(--branco);
     padding: 32px;
     border-radius: 10px;
     text-align: left;
 }
 
+/* ===== GRUPOS (fieldset) ===== */
+
+.grupo-cadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: none;
+    padding: 0 0 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--cinza-borda);
+}
+
+.grupo-cadastro:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.grupo-cadastro legend {
+    color: var(--roxo);
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+}
+
 .caixa-cadastro label {
     font-weight: bold;
     font-size: 14px;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 .caixa-cadastro input {
+    width: 100%;
     padding: 10px 12px;
     border: 1px solid var(--cinza-borda);
     border-radius: 6px;
@@ -58,8 +97,80 @@
     outline: 2px solid var(--roxo-claro);
 }
 
-.caixa-cadastro button {
-    margin-top: 24px;
+/* Dois campos lado a lado (CPF e nascimento, os telefones...). */
+.linha-campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 14px;
+}
+
+.linha-campos > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;          /* deixa o campo encolher dentro da grade */
+}
+
+/* Cidade larga, UF estreita. */
+.linha-cidade {
+    grid-template-columns: 1fr 90px;
+}
+
+.opcional {
+    font-weight: normal;
+    color: var(--cinza-texto);
+    font-size: 12px;
+}
+
+/* ===== FOTO ===== */
+
+.campo-foto {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 6px 0 4px;
+}
+
+.campo-foto > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* O <input type="file"> padrão é feio e diferente em cada
+   navegador. Ele fica escondido (mas acessível) e o <label>
+   ligado a ele vira o botão: clicar no label abre o seletor. */
+.botao-foto {
+    display: inline-block;
+    margin-top: 0 !important;
+    padding: 8px 14px;
+    border: 1px solid var(--roxo);
+    border-radius: 6px;
+    color: var(--roxo);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.botao-foto:hover {
+    background-color: var(--roxo-claro);
+}
+
+/* O input escondido ainda recebe foco pelo Tab: mostramos o
+   contorno no label, que é o que aparece. */
+.campo-foto:has(input:focus-visible) .botao-foto {
+    outline: 2px solid var(--roxo);
+    outline-offset: 2px;
+}
+
+.dica-campo {
+    color: var(--cinza-texto);
+    font-size: 12px;
+}
+
+/* ===== BOTÃO E RODAPÉ DO FORMULÁRIO ===== */
+
+.caixa-cadastro button[type="submit"] {
+    margin-top: 16px;
     background-color: var(--rosa);
     color: var(--branco);
     border: none;
@@ -70,7 +181,7 @@
     cursor: pointer;
 }
 
-.caixa-cadastro button:hover {
+.caixa-cadastro button[type="submit"]:hover {
     background-color: var(--rosa-escuro);
 }
 
@@ -86,23 +197,28 @@
     font-weight: bold;
 }
 
-.acoes-cabecalho .botao-entrar.ativo {
-    background-color: var(--branco);
-    color: var(--roxo);
-}
-
 
 /* ===== CELULAR ===== */
 
 @media (max-width: 767px) {
-    .secao-login {
+    /* Antes estas regras apontavam para .secao-login e .caixa-login
+       (copiadas do login) — por isso não faziam efeito aqui. */
+    .secao-cadastro {
         min-height: auto;
         padding: 32px 16px;
     }
-    .secao-login h1 {
+
+    .secao-cadastro h1 {
         font-size: 24px;
     }
-    .caixa-login {
-        padding: 24px;
+
+    .caixa-cadastro {
+        padding: 22px;
+    }
+
+    /* Uma coluna só: dois campos lado a lado não cabem. */
+    .linha-campos,
+    .linha-cidade {
+        grid-template-columns: 1fr;
     }
 }

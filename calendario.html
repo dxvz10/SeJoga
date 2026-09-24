@@ -1,5 +1,3 @@
-<!-- eventos.html -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -7,79 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeJoga - Calendário de Eventos</title>
+
+    <!-- Do mais geral para o mais específico: o compartilhado primeiro
+         (cabeçalho, rodapé, botões), depois o dos cards e da busca
+         (também usado pela página Eventos), por último o do calendário.
+         Em empate de especificidade, vence o arquivo lido por último. -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/eventos/style.css">
     <link rel="stylesheet" href="css/calendario/style.css">
     <link rel="icon" href="assets/logo/favicon-sj.png" type="image/png">
+
+    <!-- tema.js no <head>: aplica o tema escuro antes da página aparecer -->
+    <script src="js/tema.js"></script>
 </head>
 
 <body>
 
     <!-- CABEÇALHO -->
-
     <header class="cabecalho">
 
-        <!-- Logo / nome do site -->
         <a href="index.html" class="logo">
             <img src="assets/logo/logo.png" alt="Logo do SeJoga">
         </a>
 
-        <!-- Menu -->
-        <nav class="menu">
+        <nav class="menu" aria-label="Principal">
             <ul class="menu">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="calendario.html" class="ativo" data-precisa-login>Calendário</a></li>
+                <li><a href="calendario.html" class="ativo" aria-current="page">Calendário</a></li>
+                <li><a href="eventos.html" data-precisa-login>Eventos</a></li>
                 <li><a href="cadastro-evento.html" data-precisa-login>Cadastrar Evento</a></li>
             </ul>
         </nav>
 
-        <!-- Botões -->
+        <!-- Visitante: estes dois botões. Logado: o cabecalho.js esconde
+             os dois e monta o sininho e o menu do usuário no lugar. -->
         <div class="acoes-cabecalho">
-            <!-- Os dois estados do cabeçalho moram aqui. O atributo hidden
-                 (do próprio HTML, não precisa de CSS) esconde um dos pares;
-                 o auth.js decide qual, lendo a sessão no localStorage. -->
             <a href="cadastro.html" class="botao-cadastro" data-sessao="deslogado">Cadastrar</a>
             <a href="login.html" class="botao-entrar" data-sessao="deslogado">Entrar</a>
-
-            <span class="usuario-info" data-sessao="logado" hidden>
-                <span class="usuario-avatar" id="usuario-avatar"></span>
-                <span class="usuario-nome"></span>
-            </span>
-            <button type="button" class="botao-sair" id="botao-sair" data-sessao="logado" hidden>Sair</button>
         </div>
 
     </header>
 
 
-    <!-- CONTEUDO PRINCIPAL -->
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="conteudo">
 
-        <!-- Título da página -->
-
-        <section class="titulo">
+        <section class="titulo-pagina">
             <h1>Calendário de Eventos</h1>
-            <p>
-                Encontre festas, jogos, encontros e eventos perto de você.
-            </p>
+            <p>Encontre festas, jogos, encontros e eventos perto de você.</p>
         </section>
 
 
-        <!-- CALENDARIO -->
-
-        <section class="calendario-container">
-
-            <!-- Cabeçalho do calendário -->
+        <!-- CALENDÁRIO -->
+        <section class="calendario-container" aria-labelledby="mes-ano">
 
             <div class="calendario-topo">
-                <button type="button" class="seta" id="mes-anterior" aria-label="Mês anterior">‹</button>
-                <h2 id="mes-ano">Carregando…</h2>
-                <button type="button" class="seta" id="mes-seguinte" aria-label="Próximo mês">›</button>
+                <!-- .seta-mes, e não .seta: a classe .seta já existe no
+                     CSS compartilhado, para as setas do carrossel da home. -->
+                <button type="button" class="seta-mes" id="mes-anterior" aria-label="Mês anterior">‹</button>
+                <h2 id="mes-ano" aria-live="polite">Carregando…</h2>
+                <button type="button" class="seta-mes" id="mes-seguinte" aria-label="Próximo mês">›</button>
             </div>
 
-
-            <!-- Dias da semana -->
-
-            <div class="dias-semana">
-
+            <div class="dias-semana" aria-hidden="true">
                 <div>DOM</div>
                 <div>SEG</div>
                 <div>TER</div>
@@ -87,103 +75,44 @@
                 <div>QUI</div>
                 <div>SEX</div>
                 <div>SÁB</div>
-
             </div>
 
-
-            <!-- Dias do mês -->
-
-            <div class="dias" id="grade-dias">
-                <!-- Os dias são desenhados pelo js/calendario.js. -->
-            </div>
+            <!-- Os dias são desenhados pelo js/calendario.js. -->
+            <div class="dias" id="grade-dias"></div>
 
         </section>
 
 
-        <!-- EVENTOS EM DESTAQUE -->
-
+        <!-- PRÓXIMOS EVENTOS — os 6 mais próximos em que ainda dá para entrar -->
         <section class="eventos">
+            <h2>Próximos eventos</h2>
 
-            <h2>Eventos em destaque</h2>
-
-            <div class="cards-eventos" id="cards-eventos">
-                <!-- Os cards vêm da lista única do js/eventos.js. -->
-            </div>
-
+            <!-- Os cards vêm da lista única do js/eventos.js. -->
+            <div class="cards-eventos" id="cards-eventos"></div>
         </section>
 
 
-        <!-- TODOS OS EVENTOS: busca + filtros -->
-
-        <section class="secao-busca">
-
-            <h2>Todos os eventos</h2>
-
-            <div class="busca-topo">
-                <label for="busca">Buscar</label>
-                <input type="search" id="busca" placeholder="Nome, local ou descrição…">
-                <p class="contador-resultados" id="contador" role="status"></p>
+        <!-- VISITANTE: convite no lugar da busca completa -->
+        <section class="cta-visitante" data-sessao="deslogado">
+            <h2>Quer ver todos os eventos?</h2>
+            <p>Entre na sua conta para buscar, filtrar por região e preço e montar sua agenda.</p>
+            <div class="cta-acoes">
+                <a href="login.html?voltar=calendario.html" class="botao-entrar">Entrar</a>
+                <a href="cadastro.html" class="botao-cadastro">Criar conta</a>
             </div>
-
-            <div class="busca-layout">
-
-                <!-- fieldset + legend é a marcação correta para agrupar
-                     controles de formulário: leitores de tela anunciam
-                     "Status, grupo" antes de cada opção. -->
-                <aside class="painel-filtros">
-
-                    <div class="filtros-topo">
-                        <h3>Filtros</h3>
-                        <button type="button" id="limpar-filtros">Limpar</button>
-                    </div>
-
-                    <fieldset class="grupo-filtro">
-                        <legend>Status</legend>
-                        <label><input type="checkbox" name="status" value="disponivel"> Disponível</label>
-                        <label><input type="checkbox" name="status" value="perto"> Perto do início</label>
-                        <label><input type="checkbox" name="status" value="esgotado"> Esgotado ou cancelado</label>
-                        <label><input type="checkbox" name="status" value="realizado"> Já realizado</label>
-                    </fieldset>
-
-                    <fieldset class="grupo-filtro">
-                        <legend>Tipo de evento</legend>
-                        <label><input type="checkbox" name="categoria" value="futebol"> Futebol</label>
-                        <label><input type="checkbox" name="categoria" value="basquete"> Basquete</label>
-                        <label><input type="checkbox" name="categoria" value="fantasia"> Fantasia</label>
-                        <label><input type="checkbox" name="categoria" value="e-sport"> E-sports</label>
-                        <label><input type="checkbox" name="categoria" value="festa"> Festa</label>
-                    </fieldset>
-
-                    <fieldset class="grupo-filtro">
-                        <legend>Preço</legend>
-                        <div class="faixa-preco">
-                            <label for="preco-min">Mín</label>
-                            <input type="number" id="preco-min" min="0" step="10" placeholder="0">
-                            <label for="preco-max">Máx</label>
-                            <input type="number" id="preco-max" min="0" step="10" placeholder="999">
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="grupo-filtro">
-                        <legend>Região</legend>
-                        <!-- As opções vêm das regiões que realmente existem
-                             nos eventos, montadas pelo js/calendario.js. -->
-                        <div id="filtro-regioes"></div>
-                    </fieldset>
-
-                </aside>
-
-                <div class="resultados-busca" id="resultados-busca"></div>
-
-            </div>
-
         </section>
+
+
+        <!-- LOGADO: busca e filtros. O js/busca-eventos.js monta tudo aqui
+             dentro. hidden: começa escondida; o cabecalho.js mostra para
+             quem está logado. -->
+        <section class="secao-busca" id="busca-calendario" data-busca-eventos
+                 data-titulo="Todos os eventos" data-sessao="logado" hidden></section>
 
     </main>
 
 
     <!-- RODAPÉ -->
-
     <footer class="rodape">
         <div class="rodape-conteudo">
             <div class="rodape-coluna">
@@ -199,7 +128,6 @@
                             <img src="img/icons/instagram.png" alt="Instagram">
                         </a>
                     </li>
-
                     <li>
                         <a href="https://x.com/sejogaaaa">
                             <img src="img/icons/twitter.png" alt="Twitter">
@@ -222,21 +150,18 @@
             <p>© 2026 SeJoga — Projeto acadêmico UNISUAM · Desenvolvimento de Software para Internet</p>
         </div>
     </footer>
-<div class="modal" id="modal-conta">
-    <div class="modal-caixa">
-        <button type="button" class="modal-fechar" aria-label="Fechar">&times;</button>
-        <h2>Bem-vindo ao SeJoga!</h2>
-        <p>Para acessar todas as funcionalidades, faça login ou cadastre-se.</p>
 
-        <div class="modal-acoes">
-            <a href="login.html" class="botao-entrar">Entrar</a>
-            <a href="cadastro.html" class="botao-cadastro">Cadastrar</a>
-        </div>
-    </div>
-</div>
-<script src="js/home/auth.js"></script>
-<script src="js/eventos.js"></script>
-<script src="js/calendario.js"></script>
+
+    <!-- A ordem importa: cada arquivo usa funções dos anteriores.
+         storage → ui → auth → eventos → cabecalho → cards → página -->
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/eventos.js"></script>
+    <script src="js/cabecalho.js"></script>
+    <script src="js/cards-evento.js"></script>
+    <script src="js/calendario.js"></script>
+    <script src="js/busca-eventos.js"></script>
 </body>
 
 </html>

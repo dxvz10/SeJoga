@@ -1,10 +1,7 @@
 const formContato = document.querySelector('#form-contato')
 const avisoForm = document.querySelector('#aviso-form')
 
-const modalContato = document.querySelector('#modal-contato');
 const modalContatoTexto = document.querySelector('#modal-contato-texto');
-const botaoFechar = modalContato.querySelector('.modal-fechar');
-const botaoOk = modalContato.querySelector('.modal-ok')
 
 function mostrarAviso(texto, tipo) {
     avisoForm.textContent = texto;
@@ -16,13 +13,12 @@ function esconderAviso() {
     avisoForm.className = 'aviso-form';
 }
 
+/* Abrir e fechar agora é com o ui.js: ele fecha qualquer modal
+   pelo X, pelo fundo escuro, pelo Esc e pelos botões marcados
+   com data-fechar-modal. Não precisamos mais repetir isso aqui. */
 function abrirModalContato(texto) {
     modalContatoTexto.textContent = texto;
-    modalContato.classList.add('aberto');
-}
-
-function fecharModalContato() {
-    modalContato.classList.remove('aberto');
+    abrirModal('modal-contato');
 }
 
 formContato.addEventListener('submit', function (evento) {
@@ -45,19 +41,4 @@ formContato.addEventListener('submit', function (evento) {
     esconderAviso();
     abrirModalContato('Recebemos sua mensagem, ' + nome + '! Em breve entraremos em contato')
     formContato.reset();
-});
-
-botaoFechar.addEventListener('click', fecharModalContato);
-botaoOk.addEventListener('click', fecharModalContato)
-
-modalContato.addEventListener('click', function (evento) {
-    if (evento.target === modalContato){
-        fecharModalContato();
-    }
-});
-
-document.addEventListener('keydown', function (evento) {
-    if (evento.key === 'Escape') {
-        fecharModalContato();
-    }
 });

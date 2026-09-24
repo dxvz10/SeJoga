@@ -1,175 +1,27 @@
-/* eventos.CSS */
+/* =========================================================
+   CALENDÁRIO — só a grade de dias
+
+   Carregado por último, depois de:
+     css/style.css          reset, cores, cabeçalho, rodapé, botões
+     css/eventos/style.css  fundo da página, cards, busca e filtros
+
+   Antes este arquivo repetia o cabeçalho, o rodapé e os botões
+   do style.css. Com duas cópias, elas já tinham começado a
+   ficar diferentes (o rodapé daqui estourava a tela no celular).
+   Agora cada coisa existe num lugar só.
+   ========================================================= */
 
 
-/* CONFIGURAÇÕES GERAIS */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-:root {
-    /* Identidade — roxo e rosa */
-    --roxo-escuro: #3D0A4E;
-    /* textos e títulos */
-    --roxo: #6A1B7A;
-    /* cor de marca: menu, cabeçalhos */
-    --roxo-claro: #F5EAF8;
-    /* fundos suaves */
-    --rosa: #C2185B;
-    /* ação principal: botões */
-    --rosa-escuro: #8E1147;
-    /* o mesmo rosa no hover */
-    --rosa-claro: #F8BBD0;
-    /* destaques leves */
-    /* Neutros */
-    --branco: #FFFFFF;
-    --cinza-claro: #F4F2F5;
-    --cinza-borda: #D6D0DA;
-    --cinza-texto: #5C5560;
-    /* Sinalização de evento — as 4 cores de status */
-    --status-disponivel: #2E7D32;
-    /* verde  */
-    --status-perto: #B26A00;
-    /* âmbar  */
-    --status-esgotado: #B3261E;
-    /* vermelho */
-    --status-realizado: #6E6E6E;
-    /* cinza  */
-}
-
-body {
-    background-color: var(--cinza-claro);
-    color: var(--roxo-escuro);
-}
-
-
-/* ===== CABEÇALHO ===== */
-
-.cabecalho {
-    display: flex;
-    justify-content: space-between;
-    /* logo na esquerda, botão na direita */
-    align-items: center;
-    background-color: var(--roxo);
-    padding: 8px 32px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-}
-
-.acoes-cabecalho {
-    display: flex;
-    gap: 12px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
-
-.logo img {
-    height: 56px;
-    width: auto;
-    display: block;
-    transform: scale(1.9);
-}
-
-.menu {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-    /* tira as bolinhas da lista */
-}
-
-.menu a {
-    color: var(--branco);
-    text-decoration: none;
-    position: relative;
-    padding: 4px;
-}
-
-.menu a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--rosa-claro);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s;
-}
-
-.menu a:hover::after {
-    transform: scaleX(1);
-}
-
-.menu a:hover {
-    color: var(--rosa-claro);
-}
-
-.menu a.ativo::after {
-    transform: scaleX(1);
-}
-
-
-/* CONTEÚDO */
-
-.conteudo {
-    min-height: calc(100vh - 170px);
-    padding: 35px 5%;
-
-    /* Duas camadas de fundo. A PRIMEIRA da lista fica POR CIMA:
-       o gradiente escurece a foto para o texto branco aparecer.
-       Mesmo padrão do "Sobre Nós" e do "Contato" na home. */
-    background-image: linear-gradient(rgba(61, 10, 78, 0.72), rgba(61, 10, 78, 0.82)),
-                      url("../../assets/backgrounds/background-calendario.jpg");
-    background-size: cover;
-    background-position: center;
-
-    /* fixed = a foto não rola junto com a página. */
-    background-attachment: fixed;
-}
-
-
-/* Título */
-
-.titulo {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.titulo h1 {
-    font-size: 32px;
-    color: var(--branco);
-    margin-bottom: 8px;
-}
-
-.titulo p {
-    color: var(--branco);
-    font-size: 16px;
-}
-
-
-/* CALENDÁRIO */
+/* ===== CAIXA DO CALENDÁRIO ===== */
 
 .calendario-container {
-    background-color: white;
+    background-color: var(--branco);
     max-width: 1100px;
     margin: auto;
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
-
-
-/* Cabeçalho do calendário */
 
 .calendario-topo {
     display: flex;
@@ -180,35 +32,40 @@ body {
 
 .calendario-topo h2 {
     font-size: 25px;
-    color: #551160;
+    color: var(--roxo-escuro);
 }
 
 
-/* Setas */
-
-.seta {
+/* Setas de mês. Chamavam-se .seta, mas essa classe já existe no
+   style.css para as setas do carrossel da home — e lá ela tem
+   position: absolute. Com o mesmo nome, as duas setas daqui iam
+   parar uma em cima da outra. */
+.seta-mes {
     width: 42px;
     height: 42px;
     border: none;
     border-radius: 50%;
-    background-color: #71177f;
-    color: white;
+    background-color: var(--roxo);
+    color: var(--branco);
     font-size: 30px;
+    line-height: 1;
     cursor: pointer;
 }
 
-.seta:hover {
-    background-color: #571163;
+.seta-mes:hover {
+    background-color: var(--roxo-escuro);
 }
 
 
-/* DIAS DA SEMANA */
+/* ===== DIAS DA SEMANA ===== */
 
 .dias-semana {
     display: grid;
+    /* minmax(0, 1fr), e não só 1fr: "1fr" deixa o conteúdo EMPURRAR
+       a coluna, e um nome de evento comprido estourava a tela. */
     grid-template-columns: repeat(7, minmax(0, 1fr));
-    background-color: #71177f;
-    color: white;
+    background-color: var(--roxo);
+    color: var(--branco);
     border-radius: 6px 6px 0 0;
 }
 
@@ -220,21 +77,21 @@ body {
 }
 
 
-/* DIAS DO CALENDÁRIO */
+/* ===== DIAS DO MÊS ===== */
 
 .dias {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
-    border-left: 1px solid #ddd;
-    border-top: 1px solid #ddd;
+    border-left: 1px solid var(--cinza-borda);
+    border-top: 1px solid var(--cinza-borda);
 }
 
 .dia {
     min-height: 105px;
     padding: 10px;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    background-color: white;
+    border-right: 1px solid var(--cinza-borda);
+    border-bottom: 1px solid var(--cinza-borda);
+    background-color: var(--branco);
     font-size: 16px;
 
     /* position + z-index: sem isso o quadradinho ampliado passa
@@ -243,24 +100,18 @@ body {
     position: relative;
     z-index: 0;
 
-    /* Duração de cada propriedade. O atraso NÃO entra aqui:
-       este é o caminho de VOLTA, quando o mouse sai, e a volta
-       tem que ser imediata. */
+    /* O caminho de VOLTA (mouse saindo) não tem atraso. */
     transition: transform 0.25s ease,
                 box-shadow 0.25s ease,
                 background-color 0.25s ease;
 }
 
-
-/* Quando passar o mouse */
-
 .dia:hover {
-    background-color: #f5eafa;
+    background-color: var(--roxo-claro);
     cursor: pointer;
 
-    /* transition-delay declarado AQUI vale só para a ida.
-       O mouse precisa ficar parado 350ms antes de começar,
-       então passar o mouse de raspão não dispara nada. */
+    /* transition-delay AQUI vale só para a ida: o mouse precisa
+       ficar parado 350ms, então passar de raspão não dispara nada. */
     transition-delay: 0.35s;
 
     transform: scale(1.07);
@@ -268,516 +119,32 @@ body {
     z-index: 2;
 }
 
-/* Quem pediu menos movimento no sistema operacional recebe só
-   a troca de cor, sem o zoom. */
-/* ===== TODOS OS EVENTOS: BUSCA E FILTROS ===== */
-
-/* Mesma caixa branca do calendário: o fundo continua aparecendo
-   nas laterais, em vez de cobrir a tela toda. */
-.secao-busca {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 25px;
-    border-radius: 10px;
-    background-color: var(--branco);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.secao-busca h2 {
-    color: var(--roxo-escuro);
-    font-size: 25px;
-    margin-bottom: 18px;
-}
-
-.busca-topo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.busca-topo label {
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.busca-topo input {
-    flex: 1 1 260px;          /* cresce, mas nunca abaixo de 260px */
-    padding: 10px 12px;
-    border: 1px solid var(--cinza-borda);
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 15px;
-}
-
-.busca-topo input:focus-visible {
-    border-color: var(--roxo);
-    outline: 2px solid var(--roxo-claro);
-}
-
-.contador-resultados {
-    font-size: 14px;
-    color: var(--cinza-texto);
-}
-
-/* A lista ocupa a coluna 1 e os filtros a 2 — independente da
-   ordem no HTML. No HTML os filtros vêm primeiro porque, no
-   celular, é lá que eles devem aparecer. */
-.busca-layout {
-    display: grid;
-    grid-template-columns: 1fr 250px;
-    gap: 24px;
-    align-items: start;
-}
-
-.painel-filtros {
-    /* grid-row: 1 junto com grid-column é essencial. Só com a
-       coluna, o navegador coloca a lista na LINHA DE BAIXO:
-       ele preenche na ordem do HTML e não volta atrás. */
-    grid-column: 2;
-    grid-row: 1;
-    padding: 16px;
-    border: 1px solid var(--cinza-borda);
-    border-radius: 8px;
-    background-color: var(--cinza-claro);
-}
-
-.resultados-busca {
-    grid-column: 1;
-    grid-row: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
-}
-
-.filtros-topo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-}
-
-.filtros-topo h3 {
-    color: var(--roxo-escuro);
-    font-size: 16px;
-}
-
-#limpar-filtros {
-    border: none;
-    background: none;
-    color: var(--roxo);
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-/* fieldset vem com borda e margens próprias do navegador. */
-.grupo-filtro {
-    border: none;
-    padding: 0;
-    margin: 0 0 16px;
-}
-
-.grupo-filtro legend {
-    font-size: 13px;
-    font-weight: bold;
-    color: var(--roxo);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-}
-
-.grupo-filtro label {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 3px 0;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.grupo-filtro input[type="checkbox"] {
-    accent-color: var(--roxo);   /* pinta a caixa marcada com a cor da marca */
-    cursor: pointer;
-}
-
-.faixa-preco {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 6px 8px;
-}
-
-.faixa-preco label {
-    font-size: 14px;
-}
-
-.faixa-preco input {
-    width: 100%;
-    padding: 6px 8px;
-    border: 1px solid var(--cinza-borda);
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 14px;
-}
-
-.sem-resultado {
-    grid-column: 1 / -1;      /* ocupa a largura toda da grade */
-    padding: 28px 12px;
-    text-align: center;
-    color: var(--cinza-texto);
-}
-
-
+/* Quem pediu menos movimento no sistema recebe só a cor. */
 @media (prefers-reduced-motion: reduce) {
     .dia:hover {
         transform: none;
     }
 }
 
-
-/* Espaços vazios */
-
 .dia.vazio {
-    background-color: #f7f7f7;
+    background-color: var(--cinza-claro);
 }
 
-
-/* Dia que possui evento */
+.dia.vazio:hover {
+    transform: none;
+    box-shadow: none;
+    cursor: default;
+}
 
 .dia.evento {
-    background-color: #faf0fc;
-    font-weight: bold;
-    position: relative;
-}
-
-
-/* Nome do evento */
-
-.dia small {
-    display: block;
-    margin-top: 12px;
-    padding: 5px;
-    border-radius: 4px;
-    background-color: #d4145a;
-    color: white;
-    font-size: 12px;
-    font-weight: normal;
-}
-
-
-/* EVENTOS EM DESTAQUE */
-
-.eventos {
-    max-width: 1100px;
-    margin: 40px auto;
-}
-
-.eventos>h2 {
-    color: var(--branco);
-    margin-bottom: 20px;
-    font-size: 25px;
-}
-
-
-/* Área dos cards */
-
-.cards-eventos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-
-/* Card */
-
-.card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
-}
-
-.card:hover {
-    transform: translateY(-3px);
-    transition: 0.2s;
-}
-
-
-/* Categoria */
-
-.categoria {
-    color: var(--roxo);
-    font-size: 12px;
-    font-weight: bold;
-    /* a categoria é gravada em minúsculas ("futebol"); o visual
-       em maiúsculas é decisão de CSS, igual ao da home. */
-    text-transform: uppercase;
-}
-
-
-/* Nome */
-
-.card h3 {
-    margin: 8px 0 15px;
-    color: #42104f;
-    font-size: 21px;
-}
-
-
-/* Informações */
-
-.card p {
-    margin-bottom: 7px;
-    color: #555;
-}
-
-
-/* ===== BOTÕES ===== */
-
-.botao-entrar {
-    background-color: transparent;
-    color: var(--branco);
-    padding: 10px 20px;
-    border: 2px solid var(--branco);
-    border-radius: 6px;
-    padding: 8px 18px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.botao-cadastro {
-    background-color: var(--rosa);
-    color: var(--branco);
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.botao-cadastro:hover {
-    background-color: var(--rosa-escuro);
-}
-
-.botao-entrar:hover {
-    background-color: var(--branco);
-    color: var(--roxo);
-}
-
-
-/* RODAPÉ */
-
-.rodape {
-    background-color: #71177f;
-    color: white;
-}
-
-.rodape h3 {
-    margin-bottom: 5px;
-}
-
-.rodape p {
-    font-size: 14px;
-}
-
-
-/* ===== RODAPÉ FINAL ===== */
-
-.rodape {
-    background-color: var(--roxo);
-    color: var(--branco);
-    padding: 40px 32px 0;
-}
-
-.rodape-conteudo {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 32px;
-    padding-bottom: 32px;
-}
-
-.rodape-coluna h3 {
-    line-height: 1.6;
-    font-size: 14px;
-    color: var(--rosa-claro);
-}
-
-.rodape-coluna a {
-    color: var(--branco);
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.rodape-coluna p {
-    line-height: 1.6;
-    font-size: 14px;
-    color: var(--rosa-claro);
-}
-
-.rodape-coluna ul {
-    list-style: none;
-    display: grid;
-    gap: 8px;
-}
-
-.rodape-coluna ul img {
-    width: 24px;
-    height: 24px;
-    display: block;
-    filter: brightness(0) invert(1);
-}
-
-.rodape-coluna a:hover {
-    color: var(--rosa-claro);
-    text-decoration: underline;
-}
-
-.rodape-base {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 16px 0;
-    text-align: center;
-    font-size: 13px;
-    color: var(--rosa-claro);
-}
-
-/* ===== MODAL ===== */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-}
-
-.modal:target,
-.modal.aberto {
-    display: flex;
-}
-
-.modal-caixa {
-    position: relative;
-    background-color: var(--branco);
-    border-radius: 12px;
-    padding: 32px;
-    max-width: 420px;
-    text-align: center;
-}
-
-.modal-caixa h2 {
-    color: var(--roxo);
-    margin-bottom: 12px;
-}
-
-.modal-caixa p {
-    color: var(--cinza-texto);
-    line-height: 1.6;
-    margin-bottom: 24px;
-}
-
-.modal-acoes {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-.modal-fechar {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    font-size: 28px;
-    line-height: 1;
-    color: var(--cinza-texto);
-    text-decoration: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-.modal-acoes button {
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 15px;
-}
-
-.modal-acoes .botao-entrar {
-    color: var(--roxo);
-    border-color: var(--roxo);
-}
-
-/* RESPONSIVIDADE */
-
-/* ===== CABEÇALHO: ESTADO LOGADO ===== */
-
-/* Sem isto os itens esticam até a altura do mais alto (o avatar),
-   e o botão Sair fica com 36px em vez do tamanho do seu texto. */
-.acoes-cabecalho {
-    align-items: center;
-}
-
-.usuario-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* A foto do usuário. Enquanto não houver foto escolhida no
-   cadastro, o fundo é uma silhueta genérica desenhada em SVG
-   e embutida aqui mesmo (data URI) — não precisa de arquivo.
-   Quando houver foto, o auth.js troca este background. */
-.usuario-avatar {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;             /* não deixa o círculo achatar */
-    border-radius: 50%;
-    border: 2px solid var(--branco);
     background-color: var(--roxo-claro);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236A1B7A'%3E%3Cpath d='M12 12.4c2.65 0 4.8-2.15 4.8-4.8S14.65 2.8 12 2.8 7.2 4.95 7.2 7.6s2.15 4.8 4.8 4.8zm0 2.4c-3.2 0-9.6 1.61-9.6 4.8V22h19.2v-2.4c0-3.19-6.4-4.8-9.6-4.8z'/%3E%3C/svg%3E");
-    background-size: cover;
-    background-position: center;
-}
-
-.usuario-nome {
-    color: var(--branco);
     font-weight: bold;
 }
 
-/* O "Sair" é secundário: menor e mais discreto que o avatar,
-   para o nome continuar sendo o elemento principal. */
-.botao-sair {
-    background-color: transparent;
-    color: var(--branco);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 6px;
-    padding: 5px 12px;
-    font-family: inherit;
-    font-size: 13px;
-    cursor: pointer;
+.dia.hoje {
+    outline: 2px solid var(--rosa);
+    outline-offset: -2px;
 }
-
-.botao-sair:hover {
-    background-color: var(--branco);
-    color: var(--roxo);
-    border-color: var(--branco);
-}
-
-/* Garante que o atributo hidden vença qualquer display
-   que venha de outra regra. */
-[hidden] {
-    display: none !important;
-}
-
-
-/* ===== CALENDÁRIO: ELEMENTOS DESENHADOS PELO JS ===== */
 
 .numero-dia {
     display: block;
@@ -807,135 +174,38 @@ body {
     box-shadow: inset 3px 0 0 var(--rosa-claro);
 }
 
-.dia.hoje {
-    outline: 2px solid var(--rosa);
-    outline-offset: -2px;
-}
 
-/* ===== SELOS DE STATUS (calculados pelo eventos.js) ===== */
-
-.selo-disponivel,
-.selo-perto,
-.selo-esgotado,
-.selo-realizado {
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: bold;
-    color: var(--branco);
-    white-space: nowrap;
-}
-
-.selo-disponivel { background-color: var(--status-disponivel); }
-.selo-perto      { background-color: var(--status-perto); }
-.selo-esgotado   { background-color: var(--status-esgotado); }
-.selo-realizado  { background-color: var(--status-realizado); }
-
-.card .rodape-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 12px;
-}
-
-.card .preco {
-    font-weight: bold;
-    color: var(--roxo);
-}
-
-/* ===== BOTÃO "ADICIONAR AO CALENDÁRIO" ===== */
-
-.botao-agenda {
-    width: 100%;
-    margin-top: 12px;
-    padding: 9px 12px;
-    border: 1px solid var(--roxo);
-    border-radius: 6px;
-    background-color: transparent;
-    color: var(--roxo);
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.botao-agenda:hover {
-    background-color: var(--roxo-claro);
-}
-
-/* Depois de adicionado, o botão fica preenchido — a pessoa vê
-   de longe quais eventos já estão na agenda dela. */
-.botao-agenda.na-agenda {
-    background-color: var(--roxo);
-    color: var(--branco);
-}
-
-.botao-agenda.na-agenda:hover {
-    background-color: var(--roxo-escuro);
-}
-
+/* ===== CELULAR ===== */
 
 @media (max-width: 800px) {
-    /* Uma coluna só: os filtros sobem para cima da lista. */
-    .busca-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .painel-filtros {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .resultados-busca {
-        grid-column: 1;
-        grid-row: 2;
-    }
-
-    /* background-attachment: fixed engasga em celular —
-       alguns navegadores nem suportam. */
-    .conteudo {
-        background-attachment: scroll;
-    }
-
-    .cabecalho {
-        flex-direction: column;
-        height: auto;
-        gap: 15px;
-        padding: 20px;
-    }
-    .menu {
-        gap: 15px;
-    }
-    .cards-eventos {
-        grid-template-columns: 1fr;
-    }
     .dia {
         min-height: 80px;
         font-size: 13px;
+        padding: 6px;
     }
-    .dia small {
+
+    .etiqueta-evento {
         font-size: 9px;
+        padding: 3px 4px;
     }
 }
 
 @media (max-width: 500px) {
-    .menu {
-        flex-direction: column;
-        text-align: center;
-    }
-    .botoes {
-        width: 100%;
-        justify-content: center;
-    }
-    .conteudo {
-        padding: 20px 10px;
-    }
     .calendario-container {
         padding: 10px;
     }
+
+    .calendario-topo h2 {
+        font-size: 20px;
+    }
+
     .dias-semana div {
         font-size: 10px;
         padding: 8px 2px;
+    }
+
+    .dia {
+        min-height: 64px;
+        padding: 4px;
     }
 }

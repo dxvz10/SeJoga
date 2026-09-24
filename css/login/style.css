@@ -10,7 +10,7 @@
     justify-content: center;
     padding: 48px 24px;
     text-align: center;
-    background-image: linear-gradient(rgba(61, 10, 78, 0.60)), url("../../assets/backgrounds/fundo-sobre.jpg");
+    background-image: linear-gradient(rgba(61, 10, 78, 0.60), rgba(61, 10, 78, 0.75)), url("../../assets/backgrounds/fundo-sobre.jpg");
     background-size: cover;
     background-position: center;
 }
