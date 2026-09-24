@@ -145,13 +145,26 @@ function validarCPF(cpfDigitado) {
 
 
 /* Telefone no formato do enunciado: (+55)XX-XXXXXXXX
-   DDD com 2 dígitos + 8 dígitos, para fixo E celular.
+   DDD com 2 dígitos + 8 dígitos.
 
-   Atenção: celulares no Brasil têm 9 dígitos. O enunciado pede
-   8 para os dois, e é isso que a correção confere — vale saber
-   explicar essa diferença se o professor perguntar. */
+   O enunciado escreve 8 dígitos para fixo E celular. Só que desde
+   2016 todo celular no Brasil tem 9 dígitos (o "9" na frente) —
+   com 8, ninguém conseguiria cadastrar o próprio celular.
+
+   Decisão do grupo:
+     - FIXO:    exatamente 8 dígitos, igual ao enunciado.
+     - CELULAR: aceita 8 OU 9. Quem testar com o formato do
+                enunciado continua passando, e número de verdade
+                também passa. O começo "(+55)XX-" não muda.
+
+   Se o professor perguntar, é essa a explicação. */
 function validarTelefone(telefone) {
     return /^\(\+55\)\d{2}-\d{8}$/.test(telefone);
+}
+
+/* {8,9} = "de 8 a 9 vezes": aceita os dois tamanhos. */
+function validarCelular(telefone) {
+    return /^\(\+55\)\d{2}-\d{8,9}$/.test(telefone);
 }
 
 
@@ -184,17 +197,35 @@ function mascaraCEP(valor) {
 
 
 /* (+55)XX-XXXXXXXX
-   Se a pessoa colar "(+55)21..." o 55 do começo seria contado
-   como DDD — por isso removemos o 55 inicial quando ele vem
-   junto com o número inteiro. */
-function mascaraTelefone(valor) {
-    let n = valor.replace(/\D/g, '');
 
-    if (n.length > 10 && n.startsWith('55')) {
+   ATENÇÃO — a armadilha desta máscara: ela roda a CADA tecla, e
+   recebe o que JÁ ESTÁ no campo, com o "(+55)" que ela mesma
+   colocou na tecla anterior. Se a gente só tirar os não-números,
+   esse 55 do prefixo vira DDD:
+
+       campo: "(+55)21"  ->  números: "5521"  ->  "(+55)55-21"   (errado!)
+
+   Por isso o PRIMEIRO passo é arrancar o prefixo "(+55)" (ou o
+   que sobrou dele, se a pessoa apagou um pedaço com o Backspace).
+   A regra só vale quando o texto começa com "(+": quem digita
+   números soltos ("21999...") ou cola "(55) 9999-8888" (DDD 55,
+   do RS) não perde nada. */
+/* O segundo parâmetro diz quantos dígitos o número pode ter
+   depois do DDD: 8 no fixo (o padrão) e 9 no celular. Se ninguém
+   passar nada, vale o "= 8" — isso se chama valor padrão. */
+function mascaraTelefone(valor, digitosDoNumero = 8) {
+    const limite = 2 + digitosDoNumero;     // DDD (2) + número
+
+    const semPrefixo = valor.replace(/^\(\+5{0,2}\)?/, '');
+    let n = semPrefixo.replace(/\D/g, '');
+
+    // Colou com o código do país sem parênteses ("+55 21 ...")?
+    // Aí sobram números DEMAIS começando com 55: tiramos o 55.
+    if (n.length > limite && n.startsWith('55')) {
         n = n.slice(2);
     }
 
-    n = n.slice(0, 10);                     // DDD (2) + número (8)
+    n = n.slice(0, limite);                 // corta o que passar do limite
 
     if (n.length === 0) return '';
     if (n.length <= 2) return '(+55)' + n;

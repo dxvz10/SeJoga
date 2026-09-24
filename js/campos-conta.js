@@ -27,8 +27,8 @@ const REGRAS_DADOS = {
         mensagem: 'Informe uma data válida. É preciso ter 13 anos ou mais.'
     },
     'telefone-celular': {
-        testar: validarTelefone,
-        mensagem: 'Use o formato (+55)XX-XXXXXXXX.'
+        testar: validarCelular,             // aceita 8 ou 9 dígitos
+        mensagem: 'Use o formato (+55)XX-XXXXXXXXX (DDD + 8 ou 9 números).'
     },
     'telefone-fixo': {
         // Opcional: vazio passa; preenchido precisa estar certo.
@@ -153,7 +153,11 @@ function aplicarMascara(id, mascara) {
 function ligarMascaras() {
     aplicarMascara('cpf', mascaraCPF);
     aplicarMascara('cep', mascaraCEP);
-    aplicarMascara('telefone-celular', mascaraTelefone);
+    // O celular precisa de uma função "embrulho" para passar o 9:
+    // aplicarMascara chama mascara(valor) com UM argumento só.
+    aplicarMascara('telefone-celular', function (valor) {
+        return mascaraTelefone(valor, 9);
+    });
     aplicarMascara('telefone-fixo', mascaraTelefone);
     aplicarMascara('uf', function (valor) {
         return valor.replace(/[^A-Za-z]/g, '').toUpperCase();
