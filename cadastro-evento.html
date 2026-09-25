@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- data-pagina="restrita": só entra quem está logado. O auth.js manda
+     os visitantes para o login e, depois, de volta para cá. -->
+<html lang="pt-BR" data-pagina="restrita">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeJoga - Cadastrar Evento</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/eventos/style.css">
+    <link rel="stylesheet" href="css/cadastro/style.css">
+    <link rel="stylesheet" href="css/cadastro-evento/style.css">
+    <link rel="icon" href="assets/logo/favicon-sj.png" type="image/png">
+
+    <script src="js/tema.js"></script>
+</head>
+
+<body>
+
+    <header class="cabecalho">
+
+        <a href="index.html" class="logo">
+            <img src="assets/logo/logo.png" alt="Logo do SeJoga">
+        </a>
+
+        <nav class="menu" aria-label="Principal">
+            <ul class="menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="calendario.html">Calendário</a></li>
+                <li><a href="eventos.html" data-precisa-login>Eventos</a></li>
+                <li><a href="cadastro-evento.html" class="ativo" aria-current="page" data-precisa-login>Cadastrar Evento</a></li>
+            </ul>
+        </nav>
+
+        <div class="acoes-cabecalho">
+            <a href="cadastro.html" class="botao-cadastro" data-sessao="deslogado">Cadastrar</a>
+            <a href="login.html" class="botao-entrar" data-sessao="deslogado">Entrar</a>
+        </div>
+
+    </header>
+
+
+    <main class="conteudo">
+
+        <section class="titulo-pagina">
+            <h1>Cadastrar evento</h1>
+            <p>Divulgue seu rolê: preencha os dados e ele aparece no calendário e na página de eventos.</p>
+        </section>
+
+    </main>
+
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <div class="rodape-coluna">
+                <h3>SeJoga</h3>
+                <p>Festas, jogos e encontros perto de você. Encontre o próximo rolê sem precisar caçar em dez lugares diferentes.</p>
+            </div>
+
+            <nav class="rodape-coluna">
+                <h3>Redes Sociais</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.instagram.com/se.jogaaa/">
+                            <img src="img/icons/instagram.png" alt="Instagram">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://x.com/sejogaaaa">
+                            <img src="img/icons/twitter.png" alt="Twitter">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav class="rodape-coluna">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a>Política de Privacidade</a></li>
+                    <li><a href="#">Fale Conosco</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="rodape-base">
+            <p>© 2026 SeJoga — Projeto acadêmico UNISUAM · Desenvolvimento de Software para Internet</p>
+        </div>
+    </footer>
+
+
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/eventos.js"></script>
+    <script src="js/cabecalho.js"></script>
+</body>
+
+</html>
