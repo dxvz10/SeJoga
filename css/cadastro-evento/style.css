@@ -1,3 +1,76 @@
+/* =========================================================
+   CADASTRO DE EVENTO — estilos exclusivos da cadastro-evento.html
+
+   Carregado DEPOIS de:
+     css/style.css           (cores, cabeçalho, rodapé, tema escuro)
+     css/eventos/style.css   (fundo roxo com foto, título da página)
+     css/cadastro/style.css  (caixa branca, fieldsets, campos)
+   Quando duas regras empatam, vale a que vem por último: a daqui.
+   ========================================================= */
+
+
+/* O css/cadastro/style.css centraliza a logo (a tela de cadastro de
+   usuário só tem a logo no topo). Aqui o cabeçalho é o completo,
+   então voltamos a espalhar: logo na esquerda, usuário na direita. */
 .cabecalho {
-   justify-content: space-between; 
+    justify-content: space-between;
+}
+
+
+/* ===== CAIXA DO FORMULÁRIO ===== */
+
+/* margin auto nas laterais = o navegador divide o espaço que sobra
+   igualmente dos dois lados, e a caixa fica no meio. Só funciona
+   porque a caixa tem largura máxima (560px, no css/cadastro). */
+.caixa-cadastro {
+    margin: 0 auto;
+}
+
+
+/* ===== SELECT E TEXTAREA ===== */
+
+/* O css/cadastro só estiliza "input" (o cadastro de usuário não tem
+   lista nem caixa de texto grande). Aqui copiamos as mesmas medidas
+   para os dois ficarem iguais aos outros campos. */
+.caixa-cadastro select,
+.caixa-cadastro textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;   /* sem isso o textarea usa outra fonte */
+    background-color: var(--branco);
+}
+
+/* Contorno roxo quando o campo está em foco (igual ao input). */
+.caixa-cadastro select:focus-visible,
+.caixa-cadastro textarea:focus-visible {
+    border-color: var(--roxo);
+    outline: 2px solid var(--roxo-claro);
+}
+
+/* A pessoa pode esticar a descrição só para baixo; esticar para o
+   lado quebraria o layout no celular. */
+.caixa-cadastro textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+
+/* ===== CAMPO COM ERRO ===== */
+
+/* O css/style.css pinta de vermelho só "input[aria-invalid]".
+   Estendemos para select e textarea, com as MESMAS cores do input. */
+.caixa-cadastro select[aria-invalid="true"],
+.caixa-cadastro textarea[aria-invalid="true"] {
+    border-color: var(--status-esgotado);
+    background-color: #FFF7F6;
+}
+
+/* No tema escuro, o fundo rosado claro ficaria gritante:
+   usamos o mesmo vermelho escuro que o input usa. */
+html[data-tema="escuro"] .caixa-cadastro select[aria-invalid="true"],
+html[data-tema="escuro"] .caixa-cadastro textarea[aria-invalid="true"] {
+    background-color: #3A1B1E;
 }

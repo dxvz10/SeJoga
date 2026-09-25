@@ -49,6 +49,110 @@
             <p>Divulgue seu rolê: preencha os dados e ele aparece no calendário e na página de eventos.</p>
         </section>
 
+                <!-- NOVO: o formulário do evento.
+             novalidate desliga os balões de erro do navegador: quem vai
+             mostrar os erros é o nosso JavaScript, embaixo de cada campo,
+             no padrão do site. -->
+        <form id="form-evento" class="caixa-cadastro" novalidate>
+
+            <!-- fieldset agrupa campos do mesmo assunto; legend é o título do grupo -->
+            <fieldset class="grupo-cadastro">
+                <legend>Sobre o evento</legend>
+
+                <label for="nome-evento">Nome do evento</label>
+                <input type="text" id="nome-evento" aria-describedby="erro-nome-evento">
+                <small class="erro-campo" id="erro-nome-evento"></small>
+
+                <!-- value = o identificador que vai ser salvo (minúsculo, sem acento);
+                     o texto entre as tags = o que a pessoa lê na tela -->
+                <label for="categoria">Categoria</label>
+                <select id="categoria" aria-describedby="erro-categoria">
+                    <option value="">Escolha uma categoria</option>
+                    <option value="futebol">Futebol</option>
+                    <option value="basquete">Basquete</option>
+                    <option value="fantasia">Fantasia</option>
+                    <option value="e-sport">E-sports</option>
+                    <option value="festa">Festa</option>
+                </select>
+                <small class="erro-campo" id="erro-categoria"></small>
+
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" rows="4" aria-describedby="erro-descricao"></textarea>
+                <small class="erro-campo" id="erro-descricao"></small>
+            </fieldset>
+
+            
+            <!-- NOVO: grupo 2 -->
+            <fieldset class="grupo-cadastro">
+                <legend>Quando e onde</legend>
+
+                <!-- linha-campos: dois campos lado a lado no computador e um
+                     embaixo do outro no celular (regra que já existe no
+                     css/cadastro/style.css). Cada campo fica dentro de uma div. -->
+                <div class="linha-campos">
+                    <div>
+                        <label for="data-evento">Data</label>
+                        <input type="date" id="data-evento" aria-describedby="erro-data-evento">
+                        <small class="erro-campo" id="erro-data-evento"></small>
+                    </div>
+                    <div>
+                        <label for="hora-evento">Horário</label>
+                        <input type="time" id="hora-evento" aria-describedby="erro-hora-evento">
+                        <small class="erro-campo" id="erro-hora-evento"></small>
+                    </div>
+                </div>
+
+                <label for="local">Local</label>
+                <input type="text" id="local" aria-describedby="erro-local">
+                <small class="erro-campo" id="erro-local"></small>
+
+                <!-- As regiões precisam ser EXATAMENTE estes textos: o filtro
+                     "Região" da página Eventos agrupa os eventos por eles.
+                     Com um select, ninguém digita diferente sem querer. -->
+                <label for="regiao">Região</label>
+                <select id="regiao" aria-describedby="erro-regiao">
+                    <option value="">Escolha uma região</option>
+                    <option value="Rio de Janeiro - Centro">Rio de Janeiro - Centro</option>
+                    <option value="Rio de Janeiro - Zona Norte">Rio de Janeiro - Zona Norte</option>
+                    <option value="Rio de Janeiro - Zona Sul">Rio de Janeiro - Zona Sul</option>
+                    <option value="Rio de Janeiro - Zona Oeste">Rio de Janeiro - Zona Oeste</option>
+                    <option value="Internacional">Internacional</option>
+                </select>
+                <small class="erro-campo" id="erro-regiao"></small>
+            </fieldset>
+
+            <!-- NOVO: grupo 3 -->
+            <fieldset class="grupo-cadastro">
+                <legend>Ingressos</legend>
+
+                <div class="linha-campos">
+                    <div>
+                        <label for="preco">Preço em R$ (0 = gratuito)</label>
+                        <!-- min="0": não existe preço negativo.
+                             step="0.01": aceita centavos (ex.: 12,50). -->
+                        <input type="number" id="preco" min="0" step="0.01" aria-describedby="erro-preco">
+                        <small class="erro-campo" id="erro-preco"></small>
+                    </div>
+                    <div>
+                        <label for="capacidade">Vagas</label>
+                        <!-- min="1" e step="1": pelo menos 1 vaga e só números
+                             inteiros, porque não existe meia vaga. -->
+                        <input type="number" id="capacidade" min="1" step="1" aria-describedby="erro-capacidade">
+                        <small class="erro-campo" id="erro-capacidade"></small>
+                    </div>
+                </div>
+
+                <label for="comida-bebida">Comida e bebida <span class="opcional">(opcional)</span></label>
+                <input type="text" id="comida-bebida" aria-describedby="erro-comida-bebida">
+                <small class="erro-campo" id="erro-comida-bebida"></small>
+            </fieldset>
+
+            <!-- aviso geral (ex.: "Corrija os campos marcados") -->
+            <p class="aviso-form" id="aviso-evento"></p>
+
+            <button type="submit">Publicar evento</button>
+        </form>
+
     </main>
 
 
@@ -93,9 +197,12 @@
 
     <script src="js/storage.js"></script>
     <script src="js/ui.js"></script>
+    <script src="js/validacoes.js"></script>     <!-- NOVO -->
     <script src="js/auth.js"></script>
     <script src="js/eventos.js"></script>
     <script src="js/cabecalho.js"></script>
+    <script src="js/campos-conta.js"></script>   <!-- NOVO -->
+    <script src="js/cadastro-evento.js"></script> <!-- NOVO: o seu, sempre por último -->
 </body>
 
 </html>
